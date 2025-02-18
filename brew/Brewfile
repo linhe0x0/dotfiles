@@ -43,7 +43,9 @@ cask "1password", args: { appdir: "/Applications" }
 cask "bruno", args: { appdir: "/Applications" }
 cask "ghostty", args: { appdir: "/Applications" }
 cask "input-source-pro", args: { appdir: "/Applications" }
+cask "mos", args: { appdir: "/Applications" }
 cask "orbstack", args: { appdir: "/Applications" }
+cask "pearcleaner", args: { appdir: "/Applications" }
 cask "raycast", args: { appdir: "/Applications" }
 cask "slack", args: { appdir: "/Applications" }
 cask "visual-studio-code", args: { appdir: "/Applications" }
