@@ -104,29 +104,39 @@ return {
 					-- See `:help vim.lsp.*` for documentation on any of the below functions
 					local opts = { buffer = buffer }
 
-					vim.keymap.set("n", "glD", function()
+					vim.keymap.set("n", "glD", vim.lsp.buf.declaration, opts)
+					vim.keymap.set("n", "gvlD", function()
 						vim.cmd("vsplit")
 						vim.lsp.buf.declaration()
 					end, opts)
-					vim.keymap.set("n", "gld", function()
+
+					vim.keymap.set("n", "gld", vim.lsp.buf.definition, opts)
+					vim.keymap.set("n", "gvld", function()
 						vim.cmd("vsplit")
 						vim.lsp.buf.definition()
 					end, opts)
-					vim.keymap.set("n", "glr", function()
+
+					vim.keymap.set("n", "glr", vim.lsp.buf.references, opts)
+					vim.keymap.set("n", "gvlr", function()
 						vim.cmd("vsplit")
 						vim.lsp.buf.references()
 					end, opts)
-					vim.keymap.set("n", "gli", function()
+
+					vim.keymap.set("n", "gli", vim.lsp.buf.implementation, opts)
+					vim.keymap.set("n", "gvli", function()
 						vim.cmd("vsplit")
 						vim.lsp.buf.implementation()
 					end, opts)
+
 					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 					vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
-					vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, opts)
+					vim.keymap.set("n", "<leader>td", vim.lsp.buf.type_definition, opts)
 					vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
 					vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action, opts)
 					vim.keymap.set("n", "<leader>f", function()
-						vim.lsp.buf.format({ async = true })
+						vim.lsp.buf.format({
+							async = true,
+						})
 					end, opts)
 				end,
 			})
