@@ -9,9 +9,9 @@ alias ip='ipconfig getifaddr en0'            # Get the local IP address
 alias getip='curl -s https://httpbin.org/ip' # Get the external IP address
 
 # Quick start or close proxy
-alias pon='export http_proxy=http://proxy.internal:7890;export https_proxy=$http_proxy; export all_proxy=$http_proxy;'
+alias pon='export http_proxy=http://proxy.internal:5451;export https_proxy=$http_proxy; export all_proxy=$http_proxy;'
 alias poff='unset http_proxy;unset https_proxy; unset all_proxy;'
-alias proxy='export http_proxy=http://proxy.internal:7890;export https_proxy=$http_proxy; export all_proxy=$http_proxy;'
+alias proxy='export http_proxy=http://proxy.internal:5451;export https_proxy=$http_proxy; export all_proxy=$http_proxy;'
 alias unproxy='unset http_proxy;unset https_proxy; unset all_proxy;'
 
 # Use git like a pro.
