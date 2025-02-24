@@ -85,6 +85,7 @@ source $ZSH/oh-my-zsh.sh
 
 source ~/.shell/aliases.sh
 source ~/.shell/env.sh
+source ~/.shell/startup.sh
 
 autoload -U +X bashcompinit && bashcompinit
 
