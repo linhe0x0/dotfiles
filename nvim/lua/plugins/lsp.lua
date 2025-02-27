@@ -106,25 +106,25 @@ return {
 
 					vim.keymap.set("n", "glD", vim.lsp.buf.declaration, opts)
 					vim.keymap.set("n", "gvlD", function()
-						vim.cmd("vsplit")
+						vim.api.nvim_cmd({ cmd = "vsplit", args = {} }, {})
 						vim.lsp.buf.declaration()
 					end, opts)
 
 					vim.keymap.set("n", "gld", vim.lsp.buf.definition, opts)
 					vim.keymap.set("n", "gvld", function()
-						vim.cmd("vsplit")
+						vim.api.nvim_cmd({ cmd = "vsplit", args = {} }, {})
 						vim.lsp.buf.definition()
 					end, opts)
 
 					vim.keymap.set("n", "glr", vim.lsp.buf.references, opts)
 					vim.keymap.set("n", "gvlr", function()
-						vim.cmd("vsplit")
+						vim.api.nvim_cmd({ cmd = "vsplit", args = {} }, {})
 						vim.lsp.buf.references()
 					end, opts)
 
 					vim.keymap.set("n", "gli", vim.lsp.buf.implementation, opts)
 					vim.keymap.set("n", "gvli", function()
-						vim.cmd("vsplit")
+						vim.api.nvim_cmd({ cmd = "vsplit", args = {} }, {})
 						vim.lsp.buf.implementation()
 					end, opts)
 
