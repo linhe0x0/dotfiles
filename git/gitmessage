@@ -1,0 +1,81 @@
+
+# Title (please add the title above.)
+##################################################
+# Write a title summarizing what this commit does.
+# Start with an uppercase imperative verb, such as
+# Add, Drop, Fix, Refactor, Bump; or followiing
+# https://www.conventionalcommits.org/.
+# See ideas below.
+# Think of your title as akin to an email subject,
+# so you don't need to end with a sentence period.
+# Use 50 char maximum, which is this line's width.
+# And don't end with a period.
+#
+# Commit message with ! to draw attention to a
+# breaking change or use breaking change footer.
+#
+# For more examples, please see:
+#   https://www.conventionalcommits.org/en/v1.0.0/
+##################################################
+
+#
+# Remember keep the blank line above to make a blank line between title
+# and body.
+#
+########################################################################
+#
+# Body: Explain *what* and *why* (not *how*).
+#
+#   * Use as many lines as you like.
+#   * Use 72 characters maximum per line for typical word wrap text.
+#
+########################################################################
+# What problem does this change try to solve?
+# Describe the way things worked before the change (and what was wrong
+# with that).
+# For every line, use 72 char maximum width, which is this line's width.
+########################################################################
+# What:
+
+########################################################################
+# Why you decided to solve it the way you did?
+# Describe the purpose, such as a goal, or use case, or user story, etc.
+# For every line, use 72 char maximum width, which is this line's width.
+########################################################################
+# Why:
+
+########################################################################
+# A commit that has a footer BREAKING CHANGE:, or appends a ! after the 
+# type/scope, introduces a breaking API change.
+########################################################################
+#
+# BREAKING CHANGE: description
+#
+
+########################################################################
+#
+# ## Trailers ##
+#
+# Trailers suitable for tracking and also for `git interpret-trailers`.
+#
+# Example of "See:" trailers that mean "see this additional information"
+# and links to relevant web pages, issue trackers, blog posts, etc.:
+#
+#     See: https://example.com/
+#     See: Issue #123 <https://example.com/issue/123>
+#
+# We like to use the "See:" trailers to link to issue trackers (e.g. Jira, 
+# Asana, Basecamp, Trello), document files and folders (e.g. Box, Dropbox),
+# UI/UX designs (e.g. Figma, Lucidchart), reference pages (e.g. Wikipedia,
+# internet RFCs, IEEE standards), and web posts (e.g. StackOverflow, HN).
+#
+# To link a pull request to an issue to show that a fix is in progress and
+# to automatically close the issue when someone merges the pull request.
+# type one of the following keywords followed by a reference to the issue.
+#
+#     Fixes #1
+#     Closes #1
+#
+# For more information, see https://docs.github.com/en/get-started/writing-
+# on-github/working-with-advanced-formatting/using-keywords-in-issues-and-
+# pull-requests

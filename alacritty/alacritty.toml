@@ -1,0 +1,39 @@
+[general]
+import = ["~/.config/alacritty/alacritty-theme/themes/solarized_dark.toml"]
+
+[cursor.style]
+shape = "Block"
+
+[font]
+size = 14.0
+
+[font.normal]
+# Monaspice is a vibrant of GitHub Monaspace.
+# More detail can be found at:
+#   https://monaspace.githubnext.com/
+#   https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/Monaspace
+family = "MonaspiceNe Nerd Font Mono"
+
+# family = "Hack Nerd Font Mono"
+
+[font.bold]
+family = "MonaspiceKr Nerd Font Mono"
+# family = "Hack Nerd Font Mono"
+
+[font.italic]
+family = "MonaspiceRn Nerd Font Mono"
+# family = "Hack Nerd Font Mono"
+
+[window]
+blur = true
+decorations = "Buttonless"
+dynamic_padding = true
+opacity = 0.9
+
+[window.dimensions]
+columns = 140
+lines = 48
+
+[window.padding]
+x = 8
+y = 2
