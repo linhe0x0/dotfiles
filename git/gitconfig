@@ -23,6 +23,8 @@
   prune = true
   pruneTags = true
   all = true
+[interactive]
+  diffFilter = delta --color-only
 [pull]
   rebase = true
 [push]
