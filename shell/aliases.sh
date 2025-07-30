@@ -1,9 +1,9 @@
 alias vim="$(command -v nvim)"
 
-alias ls='ls -G'              # Enable colorized output by default
-alias la='ls -G --all'        # Create `la` as a shortcut for `ls --all`
-alias diff='diff -u'          # diff file changes
-alias cdiff='colordiff -y'    # colorize diff output.
+alias ls='ls -G'           # Enable colorized output by default
+alias la='ls -G --all'     # Create `la` as a shortcut for `ls --all`
+alias diff='diff -u'       # diff file changes
+alias cdiff='colordiff -y' # colorize diff output.
 
 # Get ip as soon as possible.
 alias ip='curl -s https://httpbin.org/ip | jq ".origin"' # Get the external IP address
@@ -27,3 +27,5 @@ alias brew_home='open_brew_package_home'
 
 # Better `ls`
 alias lsx='eza'
+
+alias sshc='ssh $(grep "^Host" ~/.ssh/config | grep -v "[*?]" | cut -d" " -f2- | fzf --prompt="Host > " --preview="sed -n '\''/^Host {}$/,/^$/p'\'' ~/.ssh/config")'
