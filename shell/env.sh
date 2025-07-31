@@ -18,7 +18,7 @@ export HOMEBREW_BREW_GIT_REMOTE="https://mirrors.tuna.tsinghua.edu.cn/git/homebr
 export BAT_THEME="DarkNeon"
 
 # Set fzf layout: https://github.com/junegunn/fzf#layout
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --style full --info=inline --border --preview="bat --color=always --style=numbers --line-range=:100 {}" --preview-window="right:60%" --bind up:preview-up,down:preview-down'
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --style full --info=inline --border --preview="bat --color=always --style=numbers --line-range=:100 {}" --preview-window="right:60%" --bind "up:preview-up,down:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down"'
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --follow --exclude .git --exclude dist'
 
 # Setup go path
