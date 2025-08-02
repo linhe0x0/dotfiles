@@ -10,10 +10,10 @@ alias ip='curl -s https://httpbin.org/ip | jq ".origin"' # Get the external IP a
 alias iip='get_internal_ip'                              # Get the internal IP address
 
 # Quick start or close proxy
-alias pon='export http_proxy=http://proxy.internal:5451;export https_proxy=$http_proxy; export all_proxy=$http_proxy;'
-alias poff='unset http_proxy;unset https_proxy; unset all_proxy;'
-alias proxy='export http_proxy=http://proxy.internal:5451;export https_proxy=$http_proxy; export all_proxy=$http_proxy;'
-alias unproxy='unset http_proxy;unset https_proxy; unset all_proxy;'
+alias proxy='export http_proxy=http://proxy.internal:5451; export https_proxy=$http_proxy; export all_proxy=$http_proxy; export HTTP_PROXY=$http_proxy; export HTTPS_PROXY=$https_proxy;'
+alias unproxy='unset http_proxy; unset https_proxy; unset all_proxy; unset HTTP_PROXY; unset HTTPS_PROXY;'
+alias pon='proxy'
+alias poff='unproxy'
 
 # Format changed only
 alias pretty='prettier -w $(git diff --name-only --diff-filter=AM)'
