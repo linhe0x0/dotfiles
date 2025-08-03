@@ -64,6 +64,19 @@ return {
 				end
 			end
 
+			-- Harper is a grammar checker designed to run anywhere there is text.
+			-- https://writewithharper.com/docs/integrations/neovim#Optional-Configuration
+			vim.lsp.config("harper_ls", {
+				settings = {
+					["harper-ls"] = {
+						linters = {
+							SentenceCapitalization = false,
+							SpellCheck = false,
+						},
+					},
+				},
+			})
+
 			-- Enable some language servers with the additional completion capabilities offered by nvim-cmp
 			-- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#jsonls
 			vim.lsp.config("jsonls", {
@@ -276,7 +289,8 @@ return {
 		opts = {
 			-- Run `Mason` command to get All available LSP servers.
 			ensure_installed = {
-				"vtsls",
+				"harper_ls", -- The slim, clean language checker for developers.
+				"vtsls", -- LSP wrapper around the TypeScript extension bundled with VSCode.
 				"vue_ls",
 				"jsonls",
 				"bashls",
