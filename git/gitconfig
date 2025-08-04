@@ -1,5 +1,9 @@
 [init]
   defaultBranch = main
+[blame]
+  ignoreRevsFile = .git-blame-ignore-revs
+  markIgnoredLines = true
+  markUnblamableLines = true
 [branch]
   sort = -committerdate
 [core]
