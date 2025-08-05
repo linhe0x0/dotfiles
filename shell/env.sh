@@ -1,4 +1,6 @@
-export PATH="$HOME/.local/bin:$HOME/bin:/opt/homebrew/bin:/usr/local/sbin:$PATH"
+# Setup go path
+export GOPATH="$HOME/.go"
+export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.go/bin:$HOME/.cargo/bin:/opt/homebrew/bin:/usr/local/sbin:$PATH"
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -20,9 +22,6 @@ export BAT_THEME="DarkNeon"
 # Set fzf layout: https://github.com/junegunn/fzf#layout
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --style full --info=inline --border --preview="bat --color=always --style=numbers --line-range=:100 {}" --preview-window="right:60%" --bind "up:preview-up,down:preview-down,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down"'
 export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --follow --exclude .git --exclude dist'
-
-# Setup go path
-export GOPATH="$HOME/.go"
 
 # Activate delta side-by-side view by default
 export DELTA_FEATURES=+side-by-side
