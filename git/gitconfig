@@ -1,7 +1,7 @@
 [init]
   defaultBranch = main
 [blame]
-  ignoreRevsFile = .git-blame-ignore-revs
+  # ignoreRevsFile = .git-blame-ignore-revs # Note that this needs to set per-project as git blame will error if it cannot find the file.
   markIgnoredLines = true
   markUnblamableLines = true
 [branch]
