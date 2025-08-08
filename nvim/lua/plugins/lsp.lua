@@ -260,10 +260,18 @@ return {
 					vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, opts)
 					vim.keymap.set("n", "<leader>td", vim.lsp.buf.type_definition, opts)
 					vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
-					vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action, opts)
 					vim.keymap.set("n", "<leader>f", function()
 						vim.lsp.buf.format({
 							async = true,
+						})
+					end, opts)
+					vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action, opts)
+					vim.keymap.set("n", "<leader>ca", function()
+						vim.lsp.buf.code_action({
+							context = {
+								only = { "quickfix", "source", "refactor" },
+								diagnostics = {},
+							},
 						})
 					end, opts)
 				end,
