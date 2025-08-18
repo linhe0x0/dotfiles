@@ -61,12 +61,14 @@ cask "notion-calendar"
 cask "obsidian"
 cask "orbstack"
 cask "pearcleaner"
+cask "proxyman"
 cask "raycast"
 cask "shottr"
 cask "slack"
 cask "visual-studio-code"
 cask "zed"
 mas "Amphetamine", id: 937984704
+mas "Bob", id: 1630034110
 mas "Keynote", id: 409183694
 mas "Microsoft To Do", id: 1274495053
 mas "Numbers", id: 409203825
