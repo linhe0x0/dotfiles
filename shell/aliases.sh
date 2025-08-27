@@ -1,7 +1,12 @@
 alias vim="$(command -v nvim)"
 
-alias ls='ls -G'           # Enable colorized output by default
-alias la='ls -G --all'     # Create `la` as a shortcut for `ls --all`
+# Better `ls`
+alias lsx='eza -lh --group-directories-first --icons=auto'
+alias lse='eza -lh --group-directories-first --icons=auto'
+alias lsa='lsx -a'
+alias lt='eza --tree --level=2 --long --icons --git'
+alias lta='lt -a'
+
 alias diff='diff -u'       # diff file changes
 alias cdiff='colordiff -y' # colorize diff output.
 
@@ -25,7 +30,5 @@ alias runs='cat package.json | jq ".scripts"'
 # Shortcut to quickly open a brew package's homepage
 alias brew_home='open_brew_package_home'
 
-# Better `ls`
-alias lsx='eza'
 
 alias sshc='ssh $(grep "^Host" ~/.ssh/config | grep -v "[*?]" | cut -d" " -f2- | fzf --prompt="Host > " --preview="sed -n '\''/^Host {}$/,/^$/p'\'' ~/.ssh/config")'
