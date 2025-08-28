@@ -77,6 +77,7 @@
   bcleanf = "!git gone | xargs -r git branch -D"
   # Toggle to the default branch and fetch remote latest changes
   done = "!f() { default_branch=$(git default); git checkout \"$default_branch\"; git up; git bclean; }; f"
+  mylog= "!git log --author=\"$(git config user.name)\" --abbrev-commit --oneline --color=always --pretty='%Cred%h%Creset - %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --date='relative'"
 
 # Local/private config goes in the include
 [include]
