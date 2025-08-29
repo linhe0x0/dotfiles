@@ -14,9 +14,15 @@ cd "$(dirname "$0")"
 source "../utils.sh"
 
 # Check what shell is being used
-SH="${HOME}/.bashrc"
-ZSHRC="${HOME}/.zshrc"
+SH="$HOME/.bashrc"
+ZSHRC="$HOME/.zshrc"
 SHELL_DIR="$HOME/.shell"
+
+SHELL_CONTENT="
+if [[ -f ~/.shell/all.sh ]]; then
+  . ~/.shell/all.sh
+fi
+"
 
 INSTALL_FILE="install.sh"
 
@@ -50,7 +56,20 @@ install_shell() {
     fi
   done
 
+  if [[ ! -f "$SH" ]]; then
+    touch $SH
+  fi
+
+  if ! grep -q ".shell/all.sh" "$SH"; then
+    echo "$SHELL_CONTENT" >>"$SH"
+  fi
+
   ok "shell"
+
+  echo ""
+  echo "Run the following commands to apply:"
+  echo "  source $SH"
+  echo ""
 }
 
 install_shell
