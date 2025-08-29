@@ -7,8 +7,9 @@ alias lsa='lsx -a'
 alias lt='eza --tree --level=2 --long --icons --git'
 alias lta='lt -a'
 
-alias diff='diff -u'       # diff file changes
-alias cdiff='colordiff -y' # colorize diff output.
+alias diff='diff -u'          # diff file changes
+alias diffy='command diff -y' # diff changes side by side.
+alias cdiff='colordiff -y'    # colorize diff output.
 
 # Get ip as soon as possible.
 alias ip='curl -s https://httpbin.org/ip | jq ".origin"' # Get the external IP address
@@ -29,6 +30,5 @@ alias runs='cat package.json | jq ".scripts"'
 # Alias for open_brew_package_home function
 # Shortcut to quickly open a brew package's homepage
 alias brew_home='open_brew_package_home'
-
 
 alias sshc='ssh $(grep "^Host" ~/.ssh/config | grep -v "[*?]" | cut -d" " -f2- | fzf --prompt="Host > " --preview="sed -n '\''/^Host {}$/,/^$/p'\'' ~/.ssh/config")'
