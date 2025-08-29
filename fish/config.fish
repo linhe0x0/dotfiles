@@ -32,8 +32,16 @@ set -gx FZF_DEFAULT_OPTS '--height 40% --layout=reverse --style full --info=inli
 set -gx FZF_DEFAULT_COMMAND 'fd --type f --strip-cwd-prefix --hidden --follow --exclude .git'
 
 # Set up fzf key bindings and fuzzy completion. See https://github.com/junegunn/fzf#setting-up-shell-integration for more details.
-fzf --fish | source
+if command -q fzf
+  fzf --fish | source
+end
+
 # Set up zoxide. See https://github.com/ajeetdsouza/zoxide for more details.
-zoxide init fish | source
+if command -q zoxide
+  zoxide init fish | source
+end
+
 # Set up direnv. See https://github.com/direnv/direnv/blob/master/docs/hook.md for more details.
-direnv hook fish | source
+if command -q direnv
+  direnv hook fish | source
+end
