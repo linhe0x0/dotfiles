@@ -11,6 +11,8 @@ alias diff='diff -u'          # diff file changes
 alias diffy='command diff -y' # diff changes side by side.
 alias cdiff='colordiff -y'    # colorize diff output.
 
+alias view="vim -R" # open a file in read-only mode
+
 # Get ip as soon as possible.
 alias ip='curl -s https://httpbin.org/ip | jq ".origin"' # Get the external IP address
 alias iip='get_internal_ip'                              # Get the internal IP address
