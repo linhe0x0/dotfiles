@@ -1,6 +1,6 @@
 set -e
 
-brew bundle dump -f
+brew bundle dump --describe --force
 
 echo "Changes:"
 echo ""
