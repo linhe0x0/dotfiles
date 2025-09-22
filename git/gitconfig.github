@@ -1,0 +1,8 @@
+[user]
+  name = Lin He
+  email = linhe0x0@gmail.com
+  signingkey = 1B11D35BB1B33D8A
+[commit]
+  gpgsign = true
+[tag]
+  gpgSign = true

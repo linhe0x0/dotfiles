@@ -1,0 +1,51 @@
+#
+# The full reference can be found at
+#   https://ghostty.org/docs/config/reference
+#
+# Theme
+theme = "Solarized Dark Patched"
+background-opacity = 0.9
+background-blur-radius = 20
+
+# Fonts
+# Report multiple times to specify preferred fallback fonts when the requested codepoint is not available in the primary font. This is particularly useful for multiple languages, symbolic fonts, etc.
+font-family = "GeistMono Nerd Font Mono"
+font-family = "MonaspiceNe Nerd Font Mono"
+font-family-bold = "MonaspiceKr Nerd Font Mono"
+font-family-italic = "Dank Mono"
+font-family-italic = "MonaspiceRn Nerd Font Mono"
+font-family-bold-italic = "Dank Mono"
+font-family-bold-italic = "MonaspiceRn Nerd Font Mono"
+font-thicken = true
+font-size = 14
+adjust-underline-position = 4
+
+# Cursor
+cursor-style = block
+cursor-style-blink = false
+cursor-color = #859901
+
+# Mouse
+mouse-hide-while-typing = true
+mouse-scroll-multiplier = 2
+
+# Window
+window-padding-x = 8
+window-padding-y = 2
+window-padding-balance = true
+window-width = 120
+window-height = 40
+macos-titlebar-style = transparent
+
+# Other
+copy-on-select = clipboard
+clipboard-trim-trailing-spaces = true
+quit-after-last-window-closed = true
+shell-integration-features = no-cursor
+
+# Just for fun
+# custom-shader = ~/.config/ghostty/shaders/cursor_smear.glsl
+
+# Updates
+auto-update = check
+auto-update-channel = stable

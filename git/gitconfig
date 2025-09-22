@@ -1,0 +1,86 @@
+[init]
+  defaultBranch = main
+[blame]
+  # ignoreRevsFile = .git-blame-ignore-revs # Note that this needs to set per-project as git blame will error if it cannot find the file.
+  markIgnoredLines = true
+  markUnblamableLines = true
+[branch]
+  sort = -committerdate
+[core]
+  excludesfile = ~/.config/git/gitignore
+  editor = vim
+  filemode = false
+  mergeoptions = --no-edit
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+  ui = true
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+[difftool]
+  prompt = false
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+[interactive]
+  diffFilter = delta --color-only
+[pull]
+  rebase = true
+[push]
+  default = simple
+  autoSetupRemote = true
+  useForceIfIncludes = true
+  followTags = true
+[rebase]
+  autoStash = true
+  autosquash = true
+  updateRefs = true
+[rerere]
+  enabled = true
+  autoupdate = true
+[status]
+  showUntrackedFiles = all
+[commit]
+  verbose = true
+  template = ~/.config/git/gitmessage
+[tag]
+  sort = -version:refname
+[merge]
+  tool = vimdiff
+  conflictstyle = diff3
+[mergetool]
+  keepBackup = false
+[grep]
+  fullName = true
+  lineNumber = true
+[apply]
+  whitespace = nowarn
+[advice]
+  skippedCherryPicks = false
+[help]
+  autocorrect = prompt
+[alias]
+  graph = log --all --graph --pretty=format:'%C(auto)%h%C(auto)%d %s %Cgreen(%aN, %ar)'
+  # Output the default branch
+  default = "!git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'"
+  pushf = push --force-with-lease --force-if-includes
+  up = "!echo '==> Syncing local branch with remote...'; git fetch --all --prune && git pull"
+  # List local branches that are gone on remote
+  gone = "!git for-each-ref --format='%(refname:short) %(upstream:track)' refs/heads/ | awk '$2 == \"[gone]\" { print $1 }' | grep -vE '^(main|master|develop|testing)$'"
+  # Prune local branches that are gone on remote
+  bclean = "!echo '==> Pruning your local branchs...'; git delete-squashed-branches; git delete-merged-branches; echo '==> Your local branchs are clean.'"
+  bcleanf = "!git gone | xargs -r git branch -D"
+  # Toggle to the default branch and fetch remote latest changes
+  done = "!f() { default_branch=$(git default); git checkout \"$default_branch\"; git up; git bclean; }; f"
+  mylog= "!git log --author=\"$(git config user.name)\" --abbrev-commit --oneline --color=always --pretty='%Cred%h%Creset - %s %Cgreen(%cd) %C(bold blue)<%an>%Creset' --date='relative'"
+
+# Local/private config goes in the include
+[include]
+  path = ~/.gitconfig.local
+[includeIf "gitdir/i:~/Sites/github.com/"]
+  path = ~/.gitconfig.github
