@@ -24,14 +24,3 @@ keymap.set("n", "<leader>s", "<cmd>write<cr>")
 
 -- Select all text in current buffer
 keymap.set("n", "<leader>a", ":keepjumps normal! ggVG<cr>")
-
--- Opens the current buffer in a new tab, positions the cursor at the original line and column, and closes the current window.
-keymap.set("n", "<leader>tt", function()
-	local line = vim.fn.line(".")
-	local col = vim.fin.line(".")
-	local buf = vim.api.nvim_get_current_buf()
-	vim.cmd("wq")
-	vim.cmd("tabnew")
-	vim.api.nvim_set_current_buf(buf)
-	vim.fn.cursor(line, col)
-end, { noremap = true, silent = true })
