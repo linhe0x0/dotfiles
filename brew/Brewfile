@@ -1,5 +1,6 @@
 tap "dotenvx/brew"
 tap "hashicorp/tap"
+tap "tw93/tap"
 # Code searching, linting, rewriting
 brew "ast-grep"
 # Official Amazon AWS command-line interface
@@ -18,6 +19,8 @@ brew "direnv"
 brew "doggo"
 # Modern, maintained replacement for ls
 brew "eza"
+# Open-source framework for augmenting humans using AI
+brew "fabric-ai"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # Fast and simple Node.js version manager
@@ -50,7 +53,7 @@ brew "mas"
 brew "tree-sitter"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
-# Platform built on V8 to build network applications
+# Open-source, cross-platform JavaScript runtime environment
 brew "node"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
@@ -96,6 +99,8 @@ brew "zellij"
 brew "zoxide"
 # Terraform
 brew "hashicorp/tap/terraform"
+# Comprehensive macOS cleanup and application uninstall tool
+brew "tw93/tap/mole"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Command-line interface for 1Password
@@ -135,6 +140,8 @@ cask "raycast"
 cask "shottr"
 # Team communication and collaboration software
 cask "slack"
+# Native GUI tool for relational databases
+cask "tableplus"
 # Open-source code editor
 cask "visual-studio-code"
 # Multiplayer code editor
@@ -167,6 +174,7 @@ vscode "gruntfuggly.todo-tree"
 vscode "hashicorp.hcl"
 vscode "hashicorp.terraform"
 vscode "hoovercj.vscode-dimmer"
+vscode "mermaidchart.vscode-mermaid-chart"
 vscode "ms-vscode-remote.remote-ssh"
 vscode "ms-vscode-remote.remote-ssh-edit"
 vscode "ms-vscode.remote-explorer"
@@ -179,3 +187,5 @@ vscode "usernamehw.errorlens"
 vscode "vscode-icons-team.vscode-icons"
 vscode "vscodevim.vim"
 vscode "vue.volar"
+go "golang.org/x/tools/gopls"
+go "honnef.co/go/tools/cmd/staticcheck"
