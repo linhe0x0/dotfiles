@@ -233,6 +233,46 @@ return {
 							end
 						end,
 					},
+					{
+						function()
+							local icons = {
+								Error = { "", "DiagnosticError" },
+								Inactive = { "", "MsgArea" },
+								Warning = { "", "DiagnosticWarn" },
+								Normal = { "", "DiagnosticOk" },
+							}
+
+							local status = require("sidekick.status").get()
+							return status and vim.tbl_get(icons, status.kind, 1)
+						end,
+						cond = function()
+							return require("sidekick.status").get() ~= nil
+						end,
+						color = function()
+							local icons = {
+								Error = "DiagnosticError",
+								Inactive = "MsgArea",
+								Warning = "DiagnosticWarn",
+								Normal = "DiagnosticOk",
+							}
+
+							local status = require("sidekick.status").get()
+							local hl = status and (status.busy and "DiagnosticWarn" or icons[status.kind])
+							return { fg = Snacks.util.color(hl) }
+						end,
+					},
+					{
+						function()
+							local status = require("sidekick.status").cli()
+							return " " .. (#status > 1 and #status or "")
+						end,
+						cond = function()
+							return #require("sidekick.status").cli() > 0
+						end,
+						color = function()
+							return { fg = Snacks.util.color("Special") }
+						end,
+					},
 				},
 				lualine_y = {
 					{ "progress", separator = " ", padding = { left = 1, right = 0 } },
