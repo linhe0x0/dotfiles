@@ -1,5 +1,10 @@
 return {
 	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+	},
+	{
 		"lewis6991/gitsigns.nvim",
 		event = "VeryLazy",
 		config = function()
