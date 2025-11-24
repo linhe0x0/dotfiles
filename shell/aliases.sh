@@ -34,3 +34,5 @@ alias runs='cat package.json | jq ".scripts"'
 alias brew_home='open_brew_package_home'
 
 alias sshc='ssh $(grep "^Host" ~/.ssh/config | grep -v "[*?]" | cut -d" " -f2- | fzf --prompt="Host > " --preview="sed -n '\''/^Host {}$/,/^$/p'\'' ~/.ssh/config")'
+
+alias fabric='fabric-ai'
