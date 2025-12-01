@@ -55,6 +55,8 @@ brew "tree-sitter"
 brew "neovim"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node"
+# AI coding agent, built for the terminal
+brew "opencode"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
 # Password manager
