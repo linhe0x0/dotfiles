@@ -7,6 +7,11 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "use_smartcase_search": true,
+  "sticky_scroll": {
+    "enabled": true
+  },
+  "buffer_font_size": 16.0,
   "features": {
     "edit_prediction_provider": "zed"
   },
@@ -19,8 +24,6 @@
   "scrollbar": {
     "show": "auto"
   },
-  "ui_font_size": 16,
-  "buffer_font_size": 16,
   "tab_size": 2,
   "confirm_quit": true,
   "project_panel": {
