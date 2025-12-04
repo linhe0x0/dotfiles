@@ -11,19 +11,16 @@
     "edit_prediction_provider": "zed"
   },
   "theme": "Ayu Dark",
-  "projects_online_by_default": false,
   "vim_mode": true,
   "vim": {
-    "use_system_clipboard": "never",
-    "use_multiline_find": true
+    "use_system_clipboard": "never"
   },
-  "relative_line_numbers": true,
+  "relative_line_numbers": "enabled",
   "scrollbar": {
     "show": "auto"
   },
   "ui_font_size": 16,
   "buffer_font_size": 16,
-  "font_size": 14,
   "tab_size": 2,
   "confirm_quit": true,
   "project_panel": {
@@ -45,10 +42,7 @@
       "formatter": {
         "external": {
           "command": "prettier",
-          "arguments": [
-            "--stdin-filepath",
-            "{buffer_path}"
-          ]
+          "arguments": ["--stdin-filepath", "{buffer_path}"]
         }
       },
       "format_on_save": "on"
