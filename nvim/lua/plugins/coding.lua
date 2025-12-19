@@ -1,5 +1,4 @@
 return {
-
 	{
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
@@ -363,6 +362,22 @@ return {
 					local sidekick = require("sidekick")
 					local copilot = require("copilot.suggestion")
 
+					local function has_inline_completion(bufnr)
+						bufnr = bufnr or vim.api.nvim_get_current_buf()
+
+						if not vim.lsp then
+							return false
+						end
+
+						for _, client in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
+							if client.supports_method and client:supports_method("textDocument/inlineCompletion") then
+								return true
+							end
+						end
+
+						return false
+					end
+
 					-- if there is a next edit, jump to it, otherwise apply it if any
 					if sidekick.nes_jump_or_apply() then
 						-- jumped or applied
@@ -376,10 +391,11 @@ return {
 					end
 
 					-- if inline completion is enabled, jump to next edit suggestion
-
-					if vim.lsp.inline_completion.get() then
-						-- jumped or applied
-						return
+					if has_inline_completion() then
+						local ic = vim.lsp.inline_completion
+						if ic and ic.get and ic.get() then
+							return
+						end
 					end
 
 					-- fallback to normal tab
