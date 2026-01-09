@@ -1,5 +1,3 @@
-alias vim="$(command -v nvim)"
-
 # Better `ls`
 alias lsx='eza -lh --group-directories-first --icons=auto'
 alias lse='eza -lh --group-directories-first --icons=auto'
@@ -12,7 +10,8 @@ alias diff='diff -u'          # diff file changes
 alias diffy='command diff -y' # diff changes side by side.
 alias cdiff='colordiff -y'    # colorize diff output.
 
-# Better `view`
+# Better `vim` and `view`
+alias vim="$(command -v nvim)"
 alias view="vim -R" # open a file in read-only mode
 
 # Get ip as soon as possible.

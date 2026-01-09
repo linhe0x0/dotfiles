@@ -1,3 +1,6 @@
+# Set editor to nvim.
+export EDITOR="nvim"
+
 # Setup go path
 export GOPATH="$HOME/.go"
 export PATH="$HOME/.local/bin:$HOME/bin:$HOME/.go/bin:$HOME/.cargo/bin:/opt/homebrew/bin:/usr/local/sbin:$PATH"
