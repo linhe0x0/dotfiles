@@ -24,7 +24,9 @@ alias pon='proxy'
 alias poff='unproxy'
 
 # Format changed only
-alias pretty='prettier -w $(git diff --name-only --diff-filter=AM)'
+alias pretty_changed='git diff --name-only --diff-filter=AM | grep -E "\.(js|jsx|ts|tsx|json|css|scss|less|md|html|vue|yaml|yml)$" | xargs -r prettier -w'
+alias pretty_staged='git diff --staged --name-only --diff-filter=AM | grep -E "\.(js|jsx|ts|tsx|json|css|scss|less|md|html|vue|yaml|yml)$" | xargs -r prettier -w'
+alias pretty_all='pretty_changed && pretty_staged'
 
 alias runx='pnpm run $(jq -r ".scripts|to_entries[]|.key" package.json | fzf --tmux center --border-label=" pnpm run " --style full --preview="jq -r '\''.scripts.\"{}\"'\'' package.json | bat -l bash")'
 alias runs='cat package.json | jq ".scripts"'
