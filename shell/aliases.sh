@@ -7,10 +7,12 @@ alias lsa='lsx -a'
 alias lt='eza --tree --level=2 --long --icons --git'
 alias lta='lt -a'
 
+# Better `diff`
 alias diff='diff -u'          # diff file changes
 alias diffy='command diff -y' # diff changes side by side.
 alias cdiff='colordiff -y'    # colorize diff output.
 
+# Better `view`
 alias view="vim -R" # open a file in read-only mode
 
 # Get ip as soon as possible.
@@ -28,6 +30,7 @@ alias pretty_changed='git diff --name-only --diff-filter=AM | grep -E "\.(js|jsx
 alias pretty_staged='git diff --staged --name-only --diff-filter=AM | grep -E "\.(js|jsx|ts|tsx|json|css|scss|less|md|html|vue|yaml|yml)$" | xargs -r prettier -w'
 alias pretty_all='pretty_changed && pretty_staged'
 
+# Run package.json scripts quickly.
 alias runx='pnpm run $(jq -r ".scripts|to_entries[]|.key" package.json | fzf --tmux center --border-label=" pnpm run " --style full --preview="jq -r '\''.scripts.\"{}\"'\'' package.json | bat -l bash")'
 alias runs='cat package.json | jq ".scripts"'
 
@@ -37,4 +40,5 @@ alias brew_home='open_brew_package_home'
 
 alias sshc='ssh $(grep "^Host" ~/.ssh/config | grep -v "[*?]" | cut -d" " -f2- | fzf --prompt="Host > " --preview="sed -n '\''/^Host {}$/,/^$/p'\'' ~/.ssh/config")'
 
+# Alias for fabric-ai command.
 alias fabric='fabric-ai'
