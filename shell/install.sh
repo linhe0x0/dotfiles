@@ -56,6 +56,12 @@ install_shell() {
     fi
   done
 
+  # Initialize private environment variables.
+  if [[ ! -f "$HOME/.env.private" ]]; then
+    touch $HOME/.env.private
+    echo "# Private environment variables. DO NOT COMMIT THIS FILE!" >>$HOME/.env.private
+  fi
+
   if [[ ! -f "$SH" ]]; then
     touch $SH
   fi

@@ -84,8 +84,9 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-if [[ -f ~/.shell/all.sh ]]; then
-  . ~/.shell/all.sh
+# Load shell configurations.
+if [[ -f "$HOME/.shell/all.sh" ]]; then
+  . "$HOME/.shell/all.sh"
 fi
 
 autoload -U +X bashcompinit && bashcompinit

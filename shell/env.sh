@@ -28,3 +28,8 @@ export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --follow --exclude .g
 
 # Activate delta side-by-side view by default
 export DELTA_FEATURES=+side-by-side
+
+# Load private environment variables.
+if [[ -f "$HOME/.env.private" ]]; then
+  source $HOME/.env.private
+fi
