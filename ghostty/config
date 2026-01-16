@@ -37,11 +37,20 @@ window-width = 120
 window-height = 40
 macos-titlebar-style = transparent
 
-# Other
-copy-on-select = clipboard
+# Clipboard
+copy-on-select = true
+clipboard-read = allow
+clipboard-write = allow
 clipboard-trim-trailing-spaces = true
+
+# Behavior
 quit-after-last-window-closed = true
-shell-integration-features = no-cursor
+
+# Shell
+shell-integration-features = no-cursor, no-sudo, title, ssh-terminfo
+
+# Keyboard
+macos-option-as-alt = true
 
 # Just for fun
 # custom-shader = ~/.config/ghostty/shaders/cursor_smear.glsl
