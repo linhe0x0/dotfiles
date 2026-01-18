@@ -9,8 +9,6 @@ brew "awscli"
 brew "bat"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
-# Color-highlighted diff(1) output
-brew "colordiff"
 # Suite of command-line tools for converting to and working with CSV
 brew "csvkit"
 # Load/unload environment variables based on $PWD

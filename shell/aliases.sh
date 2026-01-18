@@ -8,7 +8,6 @@ alias lta='lt -a'
 # Better `diff`
 alias diff='diff -u'          # diff file changes
 alias diffy='command diff -y' # diff changes side by side.
-alias cdiff='colordiff -y'    # colorize diff output.
 
 # Better `vim` and `view`
 alias vim="$(command -v nvim)"
