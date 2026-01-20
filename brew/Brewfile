@@ -72,7 +72,7 @@ brew "rustscan"
 # Autoformat shell script source code
 brew "shfmt"
 # Universal proxy platform
-brew "sing-box"
+brew "sing-box", restart_service: :changed
 # Cross-shell prompt for astronauts
 brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
@@ -116,6 +116,8 @@ cask "font-monaspice-nerd-font"
 cask "ghostty"
 # Web browser
 cask "google-chrome"
+# Chromium-based web browser
+cask "helium-browser"
 # Testing client for REST, GraphQL, and HTTP APIs
 cask "httpie-desktop"
 # Tool for multi-language users
