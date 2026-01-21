@@ -160,10 +160,8 @@ mas "SnippetsLab", id: 1006087419
 mas "Toggl Track", id: 1291898086
 mas "Xcode", id: 497799835
 vscode "antfu.file-nesting"
-vscode "bradlc.vscode-tailwindcss"
+vscode "eamodio.gitlens"
 vscode "elijah-potter.harper"
-vscode "github.copilot"
-vscode "github.copilot-chat"
 vscode "github.github-vscode-theme"
 vscode "golang.go"
 vscode "hashicorp.hcl"
