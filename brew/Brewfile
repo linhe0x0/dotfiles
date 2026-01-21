@@ -9,8 +9,6 @@ brew "awscli"
 brew "bat"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
-# Suite of command-line tools for converting to and working with CSV
-brew "csvkit"
 # Load/unload environment variables based on $PWD
 brew "direnv"
 # Command-line DNS Client for Humans
@@ -72,7 +70,7 @@ brew "rustscan"
 # Autoformat shell script source code
 brew "shfmt"
 # Universal proxy platform
-brew "sing-box", restart_service: :changed
+brew "sing-box"
 # Cross-shell prompt for astronauts
 brew "starship"
 # Organize software neatly under a single directory tree (e.g. /usr/local)
