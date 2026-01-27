@@ -7,48 +7,102 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "use_smartcase_search": true,
-  "sticky_scroll": {
-    "enabled": true
+  "debugger": {
+    "button": false,
+  },
+  "search": {
+    "button": false,
+  },
+  "terminal": {
+    "button": false,
   },
   "buffer_font_size": 16.0,
-  "features": {
-    "edit_prediction_provider": "zed"
+  "buffer_line_height": {
+    "custom": 2,
   },
-  "theme": "Ayu Dark",
-  "vim_mode": true,
-  "vim": {
-    "use_system_clipboard": "never"
+  "current_line_highlight": "all",
+  "cursor_blink": false,
+  "drag_and_drop_selection": {
+    "enabled": false,
+  },
+  "features": {
+    "edit_prediction_provider": "zed",
+  },
+  "file_finder": {
+    "modal_max_width": "large",
+  },
+  "gutter": {
+    "folds": false,
+    "min_line_number_digits": 0,
+    "runnables": false,
+  },
+  "indent_guides": {
+    "enabled": false,
+  },
+  "inlay_hints": {
+    "edit_debounce_ms": 700,
+    "enabled": true,
+    "scroll_debounce_ms": 50,
+    "show_other_hints": true,
+    "show_parameter_hints": true,
+    "show_type_hints": false,
+  },
+  "languages": {
+    "JavaScript": {
+      "format_on_save": "on",
+      "formatter": {
+        "external": {
+          "arguments": ["--stdin-filepath", "{buffer_path}"],
+          "command": "prettier",
+        },
+      },
+    },
+    "Markdown": {
+      "format_on_save": "on",
+    },
+  },
+  "multi_cursor_modifier": "cmd_or_ctrl",
+  "outline_panel": {
+    "default_width": 300,
+    "indent_guides": {
+      "show": "never",
+    },
+  },
+  "project_panel": {
+    "button": true,
+    "dock": "right",
   },
   "relative_line_numbers": "enabled",
   "scrollbar": {
-    "show": "auto"
+    "show": "auto",
+  },
+  "status_bar": {
+    "experimental.show": false,
+  },
+  "sticky_scroll": {
+    "enabled": true,
+  },
+  "tab_bar": {
+    "show_tab_bar_buttons": false,
+    "show_nav_history_buttons": false,
   },
   "tab_size": 2,
-  "confirm_quit": true,
-  "project_panel": {
-    "dock": "right"
+  "theme": "Ayu Dark",
+  "title_bar": {
+    "show_branch_name": false,
+    "show_onboarding_banner": false,
+    "show_project_items": false,
   },
-  "inlay_hints": {
-    "enabled": true,
-    "show_type_hints": false,
-    "show_parameter_hints": true,
-    "show_other_hints": true,
-    "edit_debounce_ms": 700,
-    "scroll_debounce_ms": 50
+  "toolbar": {
+    "quick_actions": false,
   },
-  "languages": {
-    "Markdown": {
-      "format_on_save": "on"
-    },
-    "JavaScript": {
-      "formatter": {
-        "external": {
-          "command": "prettier",
-          "arguments": ["--stdin-filepath", "{buffer_path}"]
-        }
-      },
-      "format_on_save": "on"
-    }
-  }
+  "use_smartcase_search": true,
+  "vim": {
+    "use_system_clipboard": "never",
+  },
+  "vim_mode": true,
+  "experimental.theme_overrides": {
+    "tab.active_background": "#0F1116",
+    "border.variant": "#0F1116",
+  },
 }
