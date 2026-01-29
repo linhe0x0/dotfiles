@@ -6,6 +6,9 @@
 
 right_format = """$time"""
 
+# Disable the blank line at the start of the prompt
+add_newline = false
+
 [time]
 disabled = false
 

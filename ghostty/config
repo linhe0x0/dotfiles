@@ -2,13 +2,16 @@
 # The full reference can be found at
 #   https://ghostty.org/docs/config/reference
 #
+
 # Theme
 theme = "Solarized Dark Patched"
 background-opacity = 0.9
-background-blur-radius = 20
+background-blur = 20
+background = #031219
 
 # Fonts
-# Report multiple times to specify preferred fallback fonts when the requested codepoint is not available in the primary font. This is particularly useful for multiple languages, symbolic fonts, etc.
+# Repeat multiple times to specify preferred fallback fonts when the requested
+# codepoint is not available in the primary font.
 font-family = "GeistMono Nerd Font Mono"
 font-family = "MonaspiceNe Nerd Font Mono"
 font-family-bold = "MonaspiceKr Nerd Font Mono"
@@ -28,14 +31,20 @@ cursor-color = #859901
 # Mouse
 mouse-hide-while-typing = true
 mouse-scroll-multiplier = 2
+focus-follows-mouse = true
 
-# Window
+# Window - Clean & Compact
 window-padding-x = 8
-window-padding-y = 2
+window-padding-y = 0
 window-padding-balance = true
 window-width = 120
 window-height = 40
+window-save-state = always
+window-inherit-working-directory = true
+window-vsync = true
+resize-overlay = never
 macos-titlebar-style = transparent
+macos-titlebar-proxy-icon = hidden
 
 # Clipboard
 copy-on-select = true
@@ -45,15 +54,15 @@ clipboard-trim-trailing-spaces = true
 
 # Behavior
 quit-after-last-window-closed = true
+confirm-close-surface = true
+app-notifications = no-clipboard-copy
 
-# Shell
-shell-integration-features = no-cursor, no-sudo, title, ssh-terminfo
+# Shell & Terminal - tmux/neovim compatibility
+term = xterm-ghostty
+shell-integration-features = no-cursor, no-sudo, title, ssh-env, ssh-terminfo
 
 # Keyboard
 macos-option-as-alt = true
-
-# Just for fun
-# custom-shader = ~/.config/ghostty/shaders/cursor_smear.glsl
 
 # Updates
 auto-update = check

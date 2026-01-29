@@ -20,9 +20,6 @@ install_ghostty() {
   mkdir -p $HOME/.config/ghostty
   link_file $PWD/config $HOME/.config/ghostty/config
 
-  mkdir -p $HOME/.config/ghostty/shaders
-  link_file $PWD/config/shaders/cursor_smear.glsl $HOME/.config/ghostty/shaders/cursor_smear.glsl
-
   ok "ghostty"
 
   info "See https://ghostty.org/docs/help/terminfo to get information on how to setup Terminfo if needed."
