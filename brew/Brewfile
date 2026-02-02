@@ -9,6 +9,8 @@ brew "awscli"
 brew "bat"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
+# Diff that understands syntax
+brew "difftastic"
 # Load/unload environment variables based on $PWD
 brew "direnv"
 # Command-line DNS Client for Humans
