@@ -17,7 +17,7 @@ source "../utils.sh"
 install_npm() {
   install "npm"
 
-  npm install -g cspell prettier --registry=https://registry.npmmirror.com
+  npm install -g cspell prettier skills --registry=https://registry.npmmirror.com
 
   ok "npm"
 }
