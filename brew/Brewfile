@@ -41,6 +41,8 @@ brew "unbound"
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
+# Fast and powerful log viewer and processor
+brew "hl"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Simple terminal UI for git commands
@@ -79,6 +81,8 @@ brew "starship"
 brew "stow"
 # Opinionated Lua code formatter
 brew "stylua"
+# Log file highlighter
+brew "tailspin"
 # Terminal multiplexer
 brew "tmux"
 # Incremental parsing library
