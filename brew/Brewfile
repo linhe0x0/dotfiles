@@ -35,6 +35,8 @@ brew "git"
 brew "git-delta"
 # Small git utilities
 brew "git-extras"
+# Render markdown on the CLI
+brew "glow"
 # Validating, recursive, caching DNS resolver
 brew "unbound"
 # GNU Privacy Guard (OpenPGP)
