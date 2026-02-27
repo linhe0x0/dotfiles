@@ -138,8 +138,6 @@ cask "netnewswire"
 cask "notion-calendar"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
-# Replacement for Docker Desktop
-cask "orbstack"
 # Utility to uninstall apps and remove leftover files from old/uninstalled apps
 cask "pearcleaner"
 # HTTP debugging proxy
