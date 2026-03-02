@@ -134,51 +134,34 @@ return {
     lazy = true,
   },
   {
-    'dense-analysis/ale',
-    event = 'VeryLazy',
-    keys = {
-      { '<leader>dp', '<Plug>(ale_previous)', mode = 'n', noremap = true, silent = true, desc = 'Previous ALE error' },
-      { '<leader>dn', '<Plug>(ale_next)', mode = 'n', noremap = true, silent = true, desc = 'Next ALE error' },
-    },
+    'mfussenegger/nvim-lint',
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
-      vim.api.nvim_set_var('ale_sign_error', '🚨')
-      vim.api.nvim_set_var('ale_sign_warning', '⚠️')
+      local lint = require('lint')
 
-      -- Run the linters only when files are saved.
-      vim.api.nvim_set_var('ale_lint_on_text_changed', 'never')
-      vim.api.nvim_set_var('ale_lint_on_insert_leave', 0)
+      lint.linters_by_ft = {
+        javascript = { 'eslint' },
+        typescript = { 'eslint' },
+        javascriptreact = { 'eslint' },
+        typescriptreact = { 'eslint' },
+        go = { 'golangcilint' },
+        sh = { 'shellcheck' },
+        yaml = { 'yamllint' },
+      }
 
-      -- Don not run linters on opening a file.
-      vim.api.nvim_set_var('ale_lint_on_enter', 0)
-
-      -- Set up the echoed message format.
-      vim.api.nvim_set_var('ale_echo_msg_format', '[%linter%] %s [%severity%]')
-
-      -- Disable ALE"s LSP functionality entirely.
-      vim.api.nvim_set_var('ale_disable_lsp', 1)
-
-      -- Make ALE display errors and warnings via the Neovim diagnostics API.
-      vim.api.nvim_set_var('ale_use_neovim_diagnostics_api', 1)
-
-      -- Only run linters named in ale_linters settings
-      vim.api.nvim_set_var('ale_linters_explicit', 1)
-
-      -- The full supported list can be found here:
-      -- https://github.com/dense-analysis/ale/blob/master/supported-tools.md
-      vim.api.nvim_set_var('ale_linters', {
-        javascript = { 'cspell', 'eslint', 'tsserver' },
-        javascriptreact = { 'cspell', 'eslint', 'tsserver' },
-        jsx = { 'cspell', 'eslint', 'tsserver' },
-        typescript = { 'cspell', 'eslint', 'tsserver', 'typecheck' },
-        typescriptreact = { 'cspell', 'eslint', 'tsserver', 'typecheck' },
-        tsx = { 'cspell', 'eslint', 'tsserver', 'typecheck' },
-        vue = { 'cspell', 'tsserver', 'vls' },
-        json = { 'cspell', 'eslint' },
-        css = { 'stylelint' },
-        go = { 'cspell', 'gofmt', 'gopls', 'golint' },
-        sh = { 'cspell', 'shell', 'language_server' },
-        yaml = { 'cspell', 'yamllint' },
+      local lint_augroup = vim.api.nvim_create_augroup('nvim-lint', { clear = true })
+      vim.api.nvim_create_autocmd({ 'BufEnter', 'BufWritePost', 'InsertLeave' }, {
+        group = lint_augroup,
+        callback = function()
+          if vim.opt.buftype:get() == '' then
+            lint.try_lint()
+          end
+        end,
       })
+
+      vim.keymap.set('n', '<leader>cl', function()
+        lint.try_lint()
+      end, { desc = 'Lint: Trigger linting for current file' })
     end,
   },
   {
