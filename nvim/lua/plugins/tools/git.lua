@@ -1,10 +1,5 @@
 return {
   {
-    'folke/snacks.nvim',
-    priority = 1000,
-    lazy = false,
-  },
-  {
     'lewis6991/gitsigns.nvim',
     event = 'VeryLazy',
     config = function()
@@ -15,7 +10,6 @@ return {
             vim.api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts)
           end
 
-          -- Navigation
           map('n', ']c', "&diff ? ']c' : '<cmd>Gitsigns next_hunk<CR>'", { expr = true })
           map('n', '[c', "&diff ? '[c' : '<cmd>Gitsigns prev_hunk<CR>'", { expr = true })
         end,

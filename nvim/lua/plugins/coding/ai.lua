@@ -1,0 +1,161 @@
+return {
+  {
+    'zbirenbaum/copilot.lua',
+    event = { 'BufReadPost' },
+    cmd = 'Copilot',
+    config = function()
+      require('copilot').setup({
+        nes = {
+          enabled = false,
+        },
+        panel = {
+          enabled = false,
+        },
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          hide_during_completion = false,
+          keymap = {
+            accept = '<C-\\>',
+            next = '<M-]>',
+            prev = '<M-[>',
+            dismiss = '<C-]>',
+          },
+        },
+        should_attach = function(_, bufname)
+          if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), '^%.env.*') then
+            return false
+          end
+
+          return true
+        end,
+      })
+    end,
+  },
+  {
+    'folke/sidekick.nvim',
+    event = { 'BufReadPost', 'BufWritePost', 'BufNewFile', 'VeryLazy' },
+    opts = {
+      cli = {
+        mux = {
+          backend = 'tmux',
+          enabled = true,
+        },
+      },
+    },
+    keys = {
+      {
+        '<tab>',
+        function()
+          local sidekick = require('sidekick')
+          local copilot = require('copilot.suggestion')
+
+          local function has_inline_completion(bufnr)
+            bufnr = bufnr or vim.api.nvim_get_current_buf()
+
+            if not vim.lsp then
+              return false
+            end
+
+            for _, client in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
+              if
+                client.supports_method and client:supports_method('textDocument/inlineCompletion')
+              then
+                return true
+              end
+            end
+
+            return false
+          end
+
+          if sidekick.nes_jump_or_apply() then
+            return
+          end
+
+          if copilot.is_visible() then
+            copilot.accept()
+            return
+          end
+
+          if has_inline_completion() then
+            local ic = vim.lsp.inline_completion
+            if ic and ic.get and ic.get() then
+              return
+            end
+          end
+
+          return '<Tab>'
+        end,
+        mode = { 'i', 'n' },
+        expr = true,
+        desc = 'Goto/Apply Next Edit Suggestion',
+      },
+      {
+        '<leader>aa',
+        function()
+          require('sidekick.cli').toggle()
+        end,
+        desc = 'Sidekick Toggle CLI',
+      },
+      {
+        '<leader>as',
+        function()
+          require('sidekick.cli').select()
+        end,
+        desc = 'Select CLI',
+      },
+      {
+        '<leader>ad',
+        function()
+          require('sidekick.cli').close()
+        end,
+        desc = 'Detach a CLI Session',
+      },
+      {
+        '<leader>at',
+        function()
+          require('sidekick.cli').send({ msg = '{this}' })
+        end,
+        mode = { 'x', 'n' },
+        desc = 'Send This',
+      },
+      {
+        '<leader>af',
+        function()
+          require('sidekick.cli').send({ msg = '{file}' })
+        end,
+        desc = 'Send File',
+      },
+      {
+        '<leader>av',
+        function()
+          require('sidekick.cli').send({ msg = '{selection}' })
+        end,
+        mode = { 'x' },
+        desc = 'Send Visual Selection',
+      },
+      {
+        '<leader>ap',
+        function()
+          require('sidekick.cli').prompt()
+        end,
+        mode = { 'n', 'x' },
+        desc = 'Sidekick Select Prompt',
+      },
+      {
+        '<leader>ac',
+        function()
+          require('sidekick.cli').toggle({ name = 'claude', focus = true })
+        end,
+        desc = 'Sidekick Toggle Claude',
+      },
+      {
+        '<leader>ao',
+        function()
+          require('sidekick.cli').toggle({ name = 'opencode', focus = true })
+        end,
+        desc = 'Sidekick Toggle OpenCode',
+      },
+    },
+  },
+}

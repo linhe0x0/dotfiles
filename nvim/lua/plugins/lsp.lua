@@ -7,6 +7,10 @@ return {
       'mason-org/mason-lspconfig.nvim',
       'b0o/schemastore.nvim',
       {
+        'hrsh7th/cmp-nvim-lsp',
+        dependencies = { 'hrsh7th/nvim-cmp' },
+      },
+      {
         'SmiteshP/nvim-navbuddy',
         dependencies = {
           'SmiteshP/nvim-navic',
