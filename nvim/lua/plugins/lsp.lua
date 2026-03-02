@@ -72,6 +72,7 @@ return {
       -- Harper is a grammar checker designed to run anywhere there is text.
       -- https://writewithharper.com/docs/integrations/neovim#Optional-Configuration
       vim.lsp.config('harper_ls', {
+        filetypes = { 'markdown', 'text' },
         settings = {
           ['harper-ls'] = {
             linters = {
@@ -85,6 +86,7 @@ return {
       -- Official language server for Go.
       -- https://go.dev/gopls/
       vim.lsp.config('gopls', {
+        filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
         capabilities = capabilities,
         on_attach = on_attach,
       })
@@ -92,6 +94,7 @@ return {
       -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
       -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#jsonls
       vim.lsp.config('jsonls', {
+        filetypes = { 'json', 'jsonc' },
         capabilities = capabilities,
         on_attach = on_attach,
         settings = {
@@ -109,18 +112,21 @@ return {
 
       -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#bashls
       vim.lsp.config('bashls', {
+        filetypes = { 'sh', 'bash' },
         capabilities = capabilities,
         on_attach = on_attach,
       })
 
       -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#vue_ls
       vim.lsp.config('vue_ls', {
+        filetypes = { 'vue' },
         capabilities = capabilities,
         on_attach = on_attach,
       })
 
       -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#vtsls
       vim.lsp.config('vtsls', {
+        filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
         capabilities = capabilities,
         on_attach = function(client, bufnr)
           if client.server_capabilities.documentSymbolProvider then
@@ -215,11 +221,6 @@ return {
           },
         },
       })
-
-      vim.lsp.enable('jsonls')
-      vim.lsp.enable('bashls')
-      vim.lsp.enable('vue_ls')
-      vim.lsp.enable('vtsls')
 
       -- Mappings.
       local opts = { noremap = true, silent = true }
