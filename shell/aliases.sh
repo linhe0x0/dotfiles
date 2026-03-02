@@ -40,3 +40,9 @@ alias sshc='ssh $(grep "^Host" ~/.ssh/config | grep -v "[*?]" | cut -d" " -f2- |
 
 # Alias for fabric-ai command.
 alias fabric='fabric-ai'
+
+# Alias for AI tools.
+alias cc="claude"
+alias cx='codex'
+alias oc='opencode'
+alias gm='gemini'
