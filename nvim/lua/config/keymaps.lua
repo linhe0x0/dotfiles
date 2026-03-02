@@ -44,3 +44,15 @@ keymap.set('n', '<leader>s', '<cmd>write<cr>', { desc = 'Save file' })
 
 -- Select all text in current buffer
 keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<cr>', { desc = 'Select all' })
+
+-- Resize windows
+keymap.set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase window height' })
+keymap.set('n', '<C-Down>', '<cmd>resize -2<cr>', { desc = 'Decrease window height' })
+keymap.set('n', '<C-Left>', '<cmd>vertical resize -2<cr>', { desc = 'Decrease window width' })
+keymap.set('n', '<C-Right>', '<cmd>vertical resize +2<cr>', { desc = 'Increase window width' })
+
+-- Better paste
+keymap.set('v', 'p', '"_dP', { desc = 'Paste without yanking' })
+
+-- Clear search highlighting
+keymap.set('n', '<Esc>', '<cmd>noh<cr><Esc>', { desc = 'Clear search highlighting' })
