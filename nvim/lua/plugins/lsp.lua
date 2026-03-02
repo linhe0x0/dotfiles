@@ -126,7 +126,14 @@ return {
 
       -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#vtsls
       vim.lsp.config('vtsls', {
-        filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
+        filetypes = {
+          'javascript',
+          'javascriptreact',
+          'javascript.jsx',
+          'typescript',
+          'typescriptreact',
+          'typescript.tsx',
+        },
         capabilities = capabilities,
         on_attach = function(client, bufnr)
           if client.server_capabilities.documentSymbolProvider then
