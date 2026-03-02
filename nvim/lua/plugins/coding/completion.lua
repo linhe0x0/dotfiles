@@ -1,116 +1,121 @@
 return {
   {
-    'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
+    'saghen/blink.cmp',
+    event = { 'InsertEnter', 'CmdlineEnter' },
+    version = '1.*',
     dependencies = {
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-      'hrsh7th/cmp-nvim-lsp-document-symbol',
-      'hrsh7th/cmp-nvim-lsp-signature-help',
-      'saadparwaiz1/cmp_luasnip',
-      'lukas-reineke/cmp-under-comparator',
+      {
+        'L3MON4D3/LuaSnip',
+        version = '2.*',
+        dependencies = { 'rafamadriz/friendly-snippets' },
+        opts = {
+          delete_check_events = 'TextChanged',
+        },
+        config = function()
+          require('luasnip.loaders.from_vscode').lazy_load()
+        end,
+      },
     },
-    config = function()
-      local cmp = require('cmp')
-      local defaults = require('cmp.config.default')()
-      local auto_select = true
-
-      local has_words_before = function()
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0
-          and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s')
-            == nil
-      end
-
-      vim.api.nvim_set_hl(0, 'CmpGhostText', { link = 'Comment', default = true })
-
-      cmp.setup({
-        snippet = {
-          expand = function(args)
-            require('luasnip').lsp_expand(args.body)
+    opts = {
+      keymap = {
+        preset = 'default',
+        ['<C-Space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+        ['<C-d>'] = { 'scroll_documentation_down' },
+        ['<C-f>'] = { 'scroll_documentation_up' },
+        ['<CR>'] = { 'accept', 'fallback' },
+        ['<Tab>'] = {
+          function(cmp)
+            if cmp.is_in_snippet() then
+              return cmp.accept()
+            else
+              return cmp.select_and_accept()
+            end
           end,
+          'snippet_forward',
+          'fallback',
         },
-        auto_brackets = {},
-        preselect = auto_select and cmp.PreselectMode.Item or cmp.PreselectMode.None,
-        completion = {
-          completeopt = 'menu,menuone,noinsert' .. (auto_select and '' or ',noselect'),
-        },
-        mapping = cmp.mapping.preset.insert({
-          ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-          ['<C-f>'] = cmp.mapping.scroll_docs(4),
-          ['<C-Space>'] = cmp.mapping.complete(),
-          ['<CR>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.confirm({
-                behavior = cmp.ConfirmBehavior.Insert,
-                select = true,
-              })
-            else
-              fallback()
-            end
-          end, { 'i', 's' }),
-          ['<C-n>'] = cmp.mapping.select_next_item({
-            behavior = cmp.SelectBehavior.Insert,
-          }),
-          ['<C-p>'] = cmp.mapping.select_prev_item({
-            behavior = cmp.SelectBehavior.Insert,
-          }),
-          ['<Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif require('luasnip').expand_or_jumpable() then
-              require('luasnip').expand_or_jump()
-            elseif has_words_before() then
-              cmp.complete()
-            else
-              fallback()
-            end
-          end, { 'i', 's' }),
-          ['<S-Tab>'] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif require('luasnip').jumpable(-1) then
-              require('luasnip').jump(-1)
-            else
-              fallback()
-            end
-          end, { 'i', 's' }),
-        }),
-        sources = cmp.config.sources({
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' },
-        }, {
-          { name = 'nvim_lsp_signature_help' },
-        }, {
-          { name = 'buffer' },
-        }, {
-          { name = 'path' },
-        }),
-        experimental = {
-          ghost_text = {
-            hl_group = 'CmpGhostText',
+        ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+        ['<C-n>'] = { 'select_next', 'fallback' },
+        ['<C-p>'] = { 'select_prev', 'fallback' },
+      },
+      appearance = {
+        use_nvim_cmp_as_default = false,
+        nerd_font_variant = 'mono',
+      },
+      completion = {
+        accept = { auto_brackets = { enabled = true } },
+        menu = {
+          draw = {
+            columns = {
+              { 'label', 'label_description', gap = 1 },
+              { 'kind_icon', 'kind' },
+            },
           },
         },
-        sorting = defaults.sorting,
-      })
-
-      cmp.setup.cmdline('/', {
-        sources = cmp.config.sources({
-          { name = 'nvim_lsp_document_symbol' },
-        }, {
-          { name = 'buffer' },
-        }),
-      })
-
-      cmp.setup.cmdline(':', {
-        sources = cmp.config.sources({
-          { name = 'path' },
-        }, {
-          { name = 'cmdline' },
-        }),
-      })
-    end,
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 500,
+          treesitter_highlighting = true,
+          window = {
+            border = 'rounded',
+          },
+        },
+        ghost_text = {
+          enabled = true,
+        },
+      },
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        per_filetype = {
+          code = { 'lsp', 'path', 'snippets', 'buffer' },
+        },
+        providers = {
+          lsp = {
+            name = 'lsp',
+            module = 'blink.cmp.sources.lsp',
+            fallbacks = { 'buffer' },
+          },
+          path = {
+            name = 'Path',
+            module = 'blink.cmp.sources.path',
+            score_offset = 3,
+          },
+          snippets = {
+            name = 'snippets',
+            module = 'blink.cmp.sources.snippets',
+          },
+          buffer = {
+            name = 'Buffer',
+            module = 'blink.cmp.sources.buffer',
+          },
+        },
+      },
+      cmdline = {
+        sources = function()
+          local type = vim.fn.getcmdtype()
+          if type == '/' or type == '?' then
+            return { 'buffer' }
+          elseif type == ':' or type == '@' then
+            return { 'cmdline' }
+          end
+          return {}
+        end,
+        completion = {
+          menu = {
+            auto_show = true,
+          },
+        },
+      },
+      signature = {
+        enabled = true,
+        window = {
+          border = 'rounded',
+        },
+      },
+      snippets = {
+        preset = 'luasnip',
+      },
+    },
+    opts_extend = { 'sources.default', 'sources.providers' },
   },
 }

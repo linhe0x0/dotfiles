@@ -7,10 +7,6 @@ return {
       'mason-org/mason-lspconfig.nvim',
       'b0o/schemastore.nvim',
       {
-        'hrsh7th/cmp-nvim-lsp',
-        dependencies = { 'hrsh7th/nvim-cmp' },
-      },
-      {
         'SmiteshP/nvim-navbuddy',
         dependencies = {
           'SmiteshP/nvim-navic',
@@ -44,8 +40,12 @@ return {
         severity_sort = true,
       })
 
-      -- Add additional capabilities supported by nvim-cmp
-      local capabilities = require('cmp_nvim_lsp').default_capabilities()
+      -- Get capabilities from blink.cmp if available, otherwise use default
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      local has_blink, blink = pcall(require, 'blink.cmp')
+      if has_blink then
+        capabilities = blink.get_lsp_capabilities(capabilities)
+      end
 
       local on_attach = function(client, bufnr)
         -- Set up navbar.
@@ -91,7 +91,7 @@ return {
         on_attach = on_attach,
       })
 
-      -- Enable some language servers with the additional completion capabilities offered by nvim-cmp
+      -- Enable some language servers with the additional completion capabilities
       -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#jsonls
       vim.lsp.config('jsonls', {
         filetypes = { 'json', 'jsonc' },
