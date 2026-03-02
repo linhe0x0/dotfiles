@@ -10,9 +10,6 @@ return {
         typescript = { 'eslint' },
         javascriptreact = { 'eslint' },
         typescriptreact = { 'eslint' },
-        go = { 'golangcilint' },
-        sh = { 'shellcheck' },
-        yaml = { 'yamllint' },
       }
 
       local lint_augroup = vim.api.nvim_create_augroup('nvim-lint', { clear = true })
