@@ -5,6 +5,7 @@ return {
     dependencies = {
       'mason-org/mason.nvim',
       'mason-org/mason-lspconfig.nvim',
+      'b0o/schemastore.nvim',
       {
         'SmiteshP/nvim-navbuddy',
         dependencies = {
@@ -220,10 +221,30 @@ return {
       local opts = { noremap = true, silent = true }
 
       -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-      vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-      vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-      vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-      vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+      vim.keymap.set(
+        'n',
+        '<space>e',
+        vim.diagnostic.open_float,
+        vim.tbl_extend('force', opts, { desc = 'Show diagnostic float' })
+      )
+      vim.keymap.set(
+        'n',
+        '<space>q',
+        vim.diagnostic.setloclist,
+        vim.tbl_extend('force', opts, { desc = 'Set diagnostic loclist' })
+      )
+      vim.keymap.set(
+        'n',
+        '[d',
+        vim.diagnostic.goto_prev,
+        vim.tbl_extend('force', opts, { desc = 'Previous diagnostic' })
+      )
+      vim.keymap.set(
+        'n',
+        ']d',
+        vim.diagnostic.goto_next,
+        vim.tbl_extend('force', opts, { desc = 'Next diagnostic' })
+      )
 
       -- Use LspAttach autocommand to only map the following keys
       -- after the language server attaches to the current buffer
@@ -239,40 +260,101 @@ return {
           -- See `:help vim.lsp.*` for documentation on any of the below functions
           local opts = { buffer = buffer }
 
-          vim.keymap.set('n', 'glD', vim.lsp.buf.declaration, opts)
+          vim.keymap.set(
+            'n',
+            'glD',
+            vim.lsp.buf.declaration,
+            vim.tbl_extend('force', opts, { desc = 'Go to declaration' })
+          )
           vim.keymap.set('n', 'gvlD', function()
             vim.api.nvim_cmd({ cmd = 'vsplit', args = {} }, {})
             vim.lsp.buf.declaration()
-          end, opts)
+          end, vim.tbl_extend(
+            'force',
+            opts,
+            { desc = 'Go to declaration in vertical split' }
+          ))
 
-          vim.keymap.set('n', 'gld', vim.lsp.buf.definition, opts)
+          vim.keymap.set(
+            'n',
+            'gld',
+            vim.lsp.buf.definition,
+            vim.tbl_extend('force', opts, { desc = 'Go to definition' })
+          )
           vim.keymap.set('n', 'gvld', function()
             vim.api.nvim_cmd({ cmd = 'vsplit', args = {} }, {})
             vim.lsp.buf.definition()
-          end, opts)
+          end, vim.tbl_extend(
+            'force',
+            opts,
+            { desc = 'Go to definition in vertical split' }
+          ))
 
-          vim.keymap.set('n', 'glr', vim.lsp.buf.references, opts)
+          vim.keymap.set(
+            'n',
+            'glr',
+            vim.lsp.buf.references,
+            vim.tbl_extend('force', opts, { desc = 'Find references' })
+          )
           vim.keymap.set('n', 'gvlr', function()
             vim.api.nvim_cmd({ cmd = 'vsplit', args = {} }, {})
             vim.lsp.buf.references()
-          end, opts)
+          end, vim.tbl_extend(
+            'force',
+            opts,
+            { desc = 'Find references in vertical split' }
+          ))
 
-          vim.keymap.set('n', 'gli', vim.lsp.buf.implementation, opts)
+          vim.keymap.set(
+            'n',
+            'gli',
+            vim.lsp.buf.implementation,
+            vim.tbl_extend('force', opts, { desc = 'Go to implementation' })
+          )
           vim.keymap.set('n', 'gvli', function()
             vim.api.nvim_cmd({ cmd = 'vsplit', args = {} }, {})
             vim.lsp.buf.implementation()
-          end, opts)
+          end, vim.tbl_extend(
+            'force',
+            opts,
+            { desc = 'Go to implementation in vertical split' }
+          ))
 
-          vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-          vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
-          vim.keymap.set('n', '<leader>td', vim.lsp.buf.type_definition, opts)
-          vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, opts)
+          vim.keymap.set(
+            'n',
+            'K',
+            vim.lsp.buf.hover,
+            vim.tbl_extend('force', opts, { desc = 'Show hover' })
+          )
+          vim.keymap.set(
+            'n',
+            '<C-k>',
+            vim.lsp.buf.signature_help,
+            vim.tbl_extend('force', opts, { desc = 'Show signature help' })
+          )
+          vim.keymap.set(
+            'n',
+            '<leader>td',
+            vim.lsp.buf.type_definition,
+            vim.tbl_extend('force', opts, { desc = 'Type definition' })
+          )
+          vim.keymap.set(
+            'n',
+            '<leader>r',
+            vim.lsp.buf.rename,
+            vim.tbl_extend('force', opts, { desc = 'Rename symbol' })
+          )
           vim.keymap.set('n', '<leader>f', function()
             vim.lsp.buf.format({
               async = true,
             })
-          end, opts)
-          vim.keymap.set('n', '<leader>.', vim.lsp.buf.code_action, opts)
+          end, vim.tbl_extend('force', opts, { desc = 'Format code' }))
+          vim.keymap.set(
+            'n',
+            '<leader>.',
+            vim.lsp.buf.code_action,
+            vim.tbl_extend('force', opts, { desc = 'Code action' })
+          )
           vim.keymap.set('n', '<leader>ca', function()
             vim.lsp.buf.code_action({
               context = {
@@ -280,7 +362,7 @@ return {
                 diagnostics = {},
               },
             })
-          end, opts)
+          end, vim.tbl_extend('force', opts, { desc = 'Code action (filtered)' }))
         end,
       })
     end,

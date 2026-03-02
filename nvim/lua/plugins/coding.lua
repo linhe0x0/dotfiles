@@ -137,8 +137,8 @@ return {
     'dense-analysis/ale',
     event = 'VeryLazy',
     keys = {
-      { '<leader>dp', '<Plug>(ale_previous)', mode = 'n', noremap = true, silent = true },
-      { '<leader>dn', '<Plug>(ale_next)', mode = 'n', noremap = true, silent = true },
+      { '<leader>dp', '<Plug>(ale_previous)', mode = 'n', noremap = true, silent = true, desc = 'Previous ALE error' },
+      { '<leader>dn', '<Plug>(ale_next)', mode = 'n', noremap = true, silent = true, desc = 'Next ALE error' },
     },
     config = function()
       vim.api.nvim_set_var('ale_sign_error', '🚨')
@@ -194,6 +194,7 @@ return {
         mode = 'n',
         noremap = true,
         silent = true,
+        desc = 'Generate documentation',
       },
       {
         '<leader>nf',
@@ -201,6 +202,7 @@ return {
         mode = 'n',
         noremap = true,
         silent = true,
+        desc = 'Generate function doc',
       },
       {
         '<leader>nc',
@@ -208,6 +210,7 @@ return {
         mode = 'n',
         noremap = true,
         silent = true,
+        desc = 'Generate class doc',
       },
       {
         '<leader>nt',
@@ -215,6 +218,7 @@ return {
         mode = 'n',
         noremap = true,
         silent = true,
+        desc = 'Generate type doc',
       },
       {
         '<C-h>',
@@ -222,6 +226,7 @@ return {
         mode = 'n',
         noremap = true,
         silent = true,
+        desc = 'Previous doc placeholder',
       },
       {
         '<C-l>',
@@ -229,6 +234,7 @@ return {
         mode = 'n',
         noremap = true,
         silent = true,
+        desc = 'Next doc placeholder',
       },
     },
     config = function()

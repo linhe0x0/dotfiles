@@ -127,7 +127,7 @@ return {
               local config = configs.get_module('textobjects.move')[name] ---@type table<string,string>
               for key, query in pairs(config or {}) do
                 if q == query and key:find('[%]%[][cC]') then
-                  vim.cmd('normal! ' .. key)
+                  vim.cmd.normal({ key, bang = true })
                   return
                 end
               end
@@ -257,7 +257,7 @@ return {
                 ['c'] = fb_actions.create, -- create file/folder at current path (trailing path separator creates folder)
                 ['p'] = fb_actions.goto_parent_dir, -- go to parent directory
                 ['/'] = function() -- enter the insert mode to search files
-                  vim.cmd('startinsert')
+                  vim.cmd.startinsert()
                 end,
                 ['<C-u>'] = function(prompt_bufnr) -- move the selection 10 lines up
                   for i = 1, 10 do
@@ -332,8 +332,8 @@ return {
           local col = vim.fn.line('.')
           local buf = vim.api.nvim_get_current_buf()
 
-          vim.cmd('wq')
-          vim.cmd('tabnew')
+          vim.cmd.wq()
+          vim.cmd.tabnew()
           vim.api.nvim_set_current_buf(buf)
           vim.fn.cursor(line, col)
         end,

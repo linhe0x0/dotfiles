@@ -9,7 +9,7 @@ function global:load_variables()
   self.is_linux = os_name == 'Linux'
   self.config_path = vim.fn.stdpath('config')
   self.data_dir = vim.fn.stdpath('data')
-  self.cache_dir = home .. '/.cache/nvim/'
+  self.cache_dir = vim.fn.stdpath('cache') .. '/'
   self.home = home
 end
 
