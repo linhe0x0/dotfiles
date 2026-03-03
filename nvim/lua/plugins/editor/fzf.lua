@@ -65,6 +65,9 @@ return {
 
       return {
         'default-title',
+        fzf_opts = {
+          ['--layout'] = 'default',
+        },
         fzf_colors = {
           bg = { 'bg', 'Normal' },
           gutter = { 'bg', 'Normal' },
