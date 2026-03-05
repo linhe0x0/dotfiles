@@ -25,7 +25,7 @@ return {
         ['<CR>'] = { 'accept', 'fallback' },
         ['<Tab>'] = {
           function(cmp)
-            if cmp.is_in_snippet() then
+            if require('luasnip').in_snippet() then
               return cmp.accept()
             else
               return cmp.select_and_accept()
