@@ -1,6 +1,9 @@
+tap "datlechin/tap"
 tap "dotenvx/brew"
 tap "hashicorp/tap"
 tap "tw93/tap"
+# Fast, lightweight CLI for App Store Connect
+brew "asc"
 # Code searching, linting, rewriting
 brew "ast-grep"
 # Official Amazon AWS command-line interface
@@ -69,6 +72,8 @@ brew "pass"
 brew "pnpm"
 # Hook preloader
 brew "proxychains-ng"
+# CLI proxy to minimize LLM token consumption
+brew "rtk"
 # Safe, concurrent, practical language
 brew "rust"
 # Modern Day Portscanner
@@ -126,8 +131,6 @@ cask "ghostty"
 cask "google-chrome"
 # Chromium-based web browser
 cask "helium-browser"
-# Testing client for REST, GraphQL, and HTTP APIs
-cask "httpie-desktop"
 # Tool for multi-language users
 cask "input-source-pro"
 # Smooths scrolling and set mouse scroll directions independently
@@ -150,17 +153,19 @@ cask "shottr"
 cask "slack"
 # Native GUI tool for relational databases
 cask "tableplus"
+# Native macOS database client for MySQL, PostgreSQL, SQLite, and MongoDB
+cask "datlechin/tap/tablepro"
 # Open-source code editor
 cask "visual-studio-code"
+# REST, GraphQL and gRPC client
+cask "yaak"
 # Multiplayer code editor
 cask "zed"
 mas "Amphetamine", id: 937984704
 mas "Bob", id: 1630034110
-mas "Keynote", id: 409183694
 mas "Maipo", id: 789066512
 mas "Microsoft To Do", id: 1274495053
-mas "Numbers", id: 409203825
-mas "Pages", id: 409201541
+mas "Numbers", id: 361304891
 mas "Paste", id: 967805235
 mas "Plain Text Editor", id: 1572202501
 mas "Pure Paste", id: 1611378436
