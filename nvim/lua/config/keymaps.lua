@@ -43,7 +43,7 @@ keymap.set('v', '<D-v>', '<C-R>+', { noremap = true, silent = true, desc = 'Past
 keymap.set('n', '<leader>s', '<cmd>write<cr>', { desc = 'Save file' })
 
 -- Select all text in current buffer
-keymap.set('n', '<leader>a', ':keepjumps normal! ggVG<cr>', { desc = 'Select all' })
+keymap.set('n', '<leader>sa', ':keepjumps normal! ggVG<cr>', { desc = 'Select all' })
 
 -- Resize windows
 keymap.set('n', '<C-Up>', '<cmd>resize +2<cr>', { desc = 'Increase window height' })
