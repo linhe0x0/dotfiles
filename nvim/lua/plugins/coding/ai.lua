@@ -40,6 +40,13 @@ return {
         mux = {
           backend = 'tmux',
           enabled = true,
+          create = 'split',
+        },
+        win = {
+          split = {
+            width = 0, -- set to 0 for default split width
+            height = 0, -- set to 0 for default split width
+          },
         },
       },
     },
