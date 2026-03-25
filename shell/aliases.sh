@@ -46,3 +46,14 @@ alias cc="claude"
 alias cx='codex'
 alias oc='opencode'
 alias gm='gemini'
+
+# Tmux Session management
+alias t='tmux'
+alias ta='tmux attach'                                             # Attach to last session
+alias tat='tmux attach -t'                                         # Attach to specific session: tat mysession
+alias ts='tmux new-session -s'                                     # New named session: ts mysession
+alias tl='tmux list-sessions'                                      # List all sessions
+alias tk='tmux kill-session -t'                                    # Kill session: tk mysession
+alias tks='tmux kill-server'                                       # Kill tmux server entirely
+alias tr='tmux rename-session -t'                                  # Rename session
+alias tf='tmux list-sessions -F "#S" | fzf | xargs tmux attach -t' # Fuzzy find and attach to tmux session
