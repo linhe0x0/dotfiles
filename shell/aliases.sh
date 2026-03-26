@@ -50,7 +50,7 @@ alias gm='gemini'
 # Tmux Session management
 alias t='tmux'
 alias ta='tmux attach'                                             # Attach to last session
-alias tat='tmux attach -t'                                         # Attach to specific session: tat mysession
+alias tt='tmux attach -t'                                          # Attach to specific session: tt mysession
 alias ts='tmux new-session -s'                                     # New named session: ts mysession
 alias tl='tmux list-sessions'                                      # List all sessions
 alias tk='tmux kill-session -t'                                    # Kill session: tk mysession
