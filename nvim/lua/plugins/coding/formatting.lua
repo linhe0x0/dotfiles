@@ -28,6 +28,7 @@ return {
         javascriptreact = { 'prettier' },
         typescript = { 'prettier' },
         typescriptreact = { 'prettier' },
+        markdown = { 'prettier' },
       },
     },
   },
