@@ -40,7 +40,7 @@ return {
         mux = {
           backend = 'tmux',
           enabled = true,
-          create = 'terminal',
+          create = 'split',
         },
         split = {
           vertical = true, -- vertical or horizontal split
