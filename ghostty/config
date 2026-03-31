@@ -19,7 +19,7 @@ font-family-italic = "Dank Mono"
 font-family-italic = "MonaspiceRn Nerd Font Mono"
 font-family-bold-italic = "Dank Mono"
 font-family-bold-italic = "MonaspiceRn Nerd Font Mono"
-font-thicken = true
+# font-thicken = true
 font-size = 14
 adjust-underline-position = 4
 
