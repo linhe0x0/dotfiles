@@ -9,7 +9,7 @@ return {
     config = function()
       require('noice').setup({
         cmdline = {
-          view = 'cmdline',
+          enabled = true,
         },
         lsp = {
           override = {
