@@ -5,7 +5,6 @@ return {
     lazy = false,
     priority = 900,
     dependencies = {
-      'nvim-treesitter/nvim-treesitter-refactor',
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
     cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
@@ -81,31 +80,6 @@ return {
             goto_previous_end = {
               ['[]'] = '@function.outer',
               ['[M'] = '@class.outer',
-            },
-          },
-        },
-        refactor = {
-          highlight_definitions = {
-            enable = true,
-            clear_on_cursor_move = false,
-          },
-          highlight_current_scope = {
-            enable = false,
-          },
-          smart_rename = {
-            enable = true,
-            keymaps = {
-              smart_rename = 'gsr',
-            },
-          },
-          navigation = {
-            enable = true,
-            keymaps = {
-              goto_definition = 'gnd',
-              list_definitions = 'gnD',
-              list_definitions_toc = 'gO',
-              goto_next_usage = '<a-*>',
-              goto_previous_usage = '<a-#>',
             },
           },
         },
