@@ -1,107 +1,48 @@
 return {
   {
     'nvim-treesitter/nvim-treesitter',
+    branch = 'main',
     build = ':TSUpdate',
     lazy = false,
     priority = 900,
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    cmd = { 'TSUpdateSync', 'TSUpdate', 'TSInstall' },
-    keys = {
-      { '<c-space>', desc = 'Increment selection' },
-      { '<bs>', desc = 'Decrement selection', mode = 'x' },
-    },
     config = function()
-      require('nvim-treesitter.configs').setup({
-        highlight = {
-          enable = true,
-          use_languagetree = true,
-          additional_vim_regex_highlighting = false,
-          disable = function(lang, buf)
-            local max_filesize = 100 * 1024
-            local ok, stats = pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
-            if ok and stats and stats.size > max_filesize then
-              return true
-            end
-          end,
-        },
-        indent = {
-          enable = true,
-        },
-        ensure_installed = {
-          'bash',
-          'javascript',
-          'typescript',
-          'tsx',
-          'vue',
-          'json',
-          'yaml',
-          'go',
-          'rust',
-          'lua',
-          'markdown',
-          'markdown_inline',
-        },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = '<C-space>',
-            node_incremental = '<C-space>',
-            scope_incremental = false,
-            node_decremental = '<bs>',
-          },
-        },
-        textobjects = {
-          select = {
-            enable = true,
-            keymaps = {
-              ['af'] = '@function.outer',
-              ['if'] = '@function.inner',
-              ['ac'] = '@class.outer',
-              ['ic'] = '@class.inner',
-            },
-          },
-          move = {
-            enable = true,
-            set_jumps = true,
-            goto_next_start = {
-              [']['] = '@function.outer',
-              [']m'] = '@class.outer',
-            },
-            goto_next_end = {
-              [']]'] = '@function.outer',
-              [']M'] = '@class.outer',
-            },
-            goto_previous_start = {
-              ['[['] = '@function.outer',
-              ['[m'] = '@class.outer',
-            },
-            goto_previous_end = {
-              ['[]'] = '@function.outer',
-              ['[M'] = '@class.outer',
-            },
-          },
-        },
+      require('nvim-treesitter').setup()
+
+      vim.api.nvim_create_autocmd('FileType', {
+        group = vim.api.nvim_create_augroup('treesitter_setup', { clear = true }),
+        callback = function()
+          pcall(vim.treesitter.start)
+        end,
       })
+
+      vim.keymap.set({ 'n', 'x' }, '<C-space>', function()
+        vim.treesitter.incremental_selection.init_selection()
+      end, { desc = 'Increment selection' })
+      vim.keymap.set('x', '<bs>', function()
+        vim.treesitter.incremental_selection.node_decremental()
+      end, { desc = 'Decrement selection' })
+      vim.keymap.set('x', '<C-space>', function()
+        vim.treesitter.incremental_selection.node_incremental()
+      end, { desc = 'Increment selection' })
     end,
   },
   {
     'nvim-treesitter/nvim-treesitter-textobjects',
+    branch = 'main',
     lazy = true,
+    event = 'VeryLazy',
     config = function()
-      local move = require('nvim-treesitter.textobjects.move')
-      local configs = require('nvim-treesitter.configs')
+      local move = require('nvim-treesitter-textobjects.move')
+
       for name, fn in pairs(move) do
         if name:find('goto') == 1 then
           move[name] = function(q, ...)
             if vim.wo.diff then
-              local config = configs.get_module('textobjects.move')[name]
-              for key, query in pairs(config or {}) do
-                if q == query and key:find('[%]%[][cC]') then
-                  vim.cmd.normal({ key, bang = true })
-                  return
-                end
+              local key = q == '@function.outer' and (name:find('next') and ']]' or '[[')
+                or q == '@class.outer' and (name:find('next') and ']m' or '[m')
+              if key then
+                vim.cmd.normal({ key, bang = true })
+                return
               end
             end
             return fn(q, ...)
