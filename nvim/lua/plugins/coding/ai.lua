@@ -69,9 +69,7 @@ return {
             end
 
             for _, client in ipairs(vim.lsp.get_clients({ bufnr = bufnr })) do
-              if
-                client.supports_method and client:supports_method('textDocument/inlineCompletion')
-              then
+              if client:supports_method('textDocument/inlineCompletion') then
                 return true
               end
             end
