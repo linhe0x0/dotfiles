@@ -376,18 +376,21 @@ return {
             })
           end, vim.tbl_extend('force', opts, { desc = 'Code action (filtered)' }))
 
-          local highlight_augroup =
-            vim.api.nvim_create_augroup('LspDocumentHighlight', { clear = false })
-          vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
-            group = highlight_augroup,
-            buffer = buffer,
-            callback = vim.lsp.buf.document_highlight,
-          })
-          vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
-            group = highlight_augroup,
-            buffer = buffer,
-            callback = vim.lsp.buf.clear_references,
-          })
+          local client = vim.lsp.get_client_by_id(args.data.client_id)
+          if client and client.server_capabilities.documentHighlightProvider then
+            local highlight_augroup =
+              vim.api.nvim_create_augroup('LspDocumentHighlight', { clear = false })
+            vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
+              group = highlight_augroup,
+              buffer = buffer,
+              callback = vim.lsp.buf.document_highlight,
+            })
+            vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
+              group = highlight_augroup,
+              buffer = buffer,
+              callback = vim.lsp.buf.clear_references,
+            })
+          end
         end,
       })
     end,
