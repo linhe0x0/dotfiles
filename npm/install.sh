@@ -22,6 +22,7 @@ install_npm() {
     prettier \
     skills \
     sql-formatter;
+  npm list -g
 
   ok "npm"
 }
