@@ -1,4 +1,5 @@
 tap "datlechin/tap"
+tap "dmno-dev/tap"
 tap "dotenvx/brew"
 tap "hashicorp/tap"
 tap "tw93/tap"
@@ -30,6 +31,10 @@ brew "fnm"
 brew "fx"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# Open-source, cross-platform JavaScript runtime environment
+brew "node"
+# Interact with Google Gemini AI models from the command-line
+brew "gemini-cli"
 # GitHub command-line tool
 brew "gh"
 # Distributed revision control system
@@ -56,10 +61,10 @@ brew "lazygit"
 brew "luacheck"
 # Mac App Store command-line interface
 brew "mas"
+# Incremental parsing library
+brew "tree-sitter"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
-# Open-source, cross-platform JavaScript runtime environment
-brew "node"
 # Search tool like grep and The Silver Searcher
 brew "ripgrep"
 # AI coding agent, built for the terminal
@@ -92,8 +97,8 @@ brew "stylua"
 brew "tailspin"
 # Terminal multiplexer
 brew "tmux"
-# Incremental parsing library
-brew "tree-sitter"
+# Parser generator tool
+brew "tree-sitter-cli"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Executes a program periodically, showing output fullscreen
@@ -108,6 +113,8 @@ brew "yazi"
 brew "zellij"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
+# varlock is a tool to load and validate .env files
+brew "dmno-dev/tap/varlock"
 # Terraform
 brew "hashicorp/tap/terraform"
 # Comprehensive macOS cleanup and application uninstall tool
