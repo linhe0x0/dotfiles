@@ -21,7 +21,8 @@ install_npm() {
     cspell \
     prettier \
     skills \
-    sql-formatter;
+    sql-formatter
+
   npm list -g
 
   ok "npm"

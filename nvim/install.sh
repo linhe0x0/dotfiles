@@ -18,7 +18,7 @@ install_nvim() {
   install "neovim"
 
   link_file $PWD $HOME/.config/nvim
-	nvim --headless "+Lazy! sync" +qa
+  nvim --headless "+Lazy! sync" +qa
 
   ok "neovim"
 }
