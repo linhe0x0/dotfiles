@@ -40,7 +40,7 @@ return {
       },
       {
         '<C-h>',
-        ":lua require('neogen').jump_prev<CR>",
+        function() require('neogen').jump_prev() end,
         mode = 'n',
         noremap = true,
         silent = true,
@@ -48,7 +48,7 @@ return {
       },
       {
         '<C-l>',
-        ":lua require('neogen').jump_next<CR>",
+        function() require('neogen').jump_next() end,
         mode = 'n',
         noremap = true,
         silent = true,
