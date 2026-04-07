@@ -29,6 +29,12 @@ install_skills() {
     --agent claude-code \
     --agent opencode
 
+  skills add https://github.com/mattpocock/skills --global --yes \
+    --skill grill-me \
+    --skill write-a-prd \
+    --agent claude-code \
+    --agent opencode
+
   skills add https://github.com/vercel-labs/agent-browser --global --yes \
     --skill agent-browser \
     --skill electron \
