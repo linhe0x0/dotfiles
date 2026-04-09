@@ -160,8 +160,6 @@ cask "raycast"
 cask "shottr"
 # Team communication and collaboration software
 cask "slack"
-# Native GUI tool for relational databases
-cask "tableplus"
 # Native macOS database client for MySQL, PostgreSQL, SQLite, and MongoDB
 cask "datlechin/tap/tablepro"
 # Open-source code editor
