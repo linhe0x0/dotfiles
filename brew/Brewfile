@@ -77,6 +77,8 @@ brew "pass"
 brew "pnpm"
 # Hook preloader
 brew "proxychains-ng"
+# Repeat a command until the command succeeds
+brew "retry"
 # CLI proxy to minimize LLM token consumption
 brew "rtk"
 # Safe, concurrent, practical language
@@ -170,9 +172,11 @@ cask "yaak"
 cask "zed"
 mas "Amphetamine", id: 937984704
 mas "Bob", id: 1630034110
+mas "Keynote", id: 361285480
 mas "Maipo", id: 789066512
 mas "Microsoft To Do", id: 1274495053
 mas "Numbers", id: 361304891
+mas "Pages", id: 361309726
 mas "Paste", id: 967805235
 mas "Plain Text Editor", id: 1572202501
 mas "Pure Paste", id: 1611378436
