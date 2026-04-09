@@ -42,3 +42,4 @@ opt.wildmode = 'longest:full,full' -- Command-line completion mode
 opt.virtualedit = 'block' -- Allow cursor to move where there is no text in visual block mode
 opt.exrc = true -- Allow reading local .exrc/.nvimrc files for project-specific settings
 opt.secure = true -- Disallow dangerous commands in local .exrc/.nvimrc files
+opt.autocomplete = true -- Enable autocompletion
