@@ -109,7 +109,11 @@ return {
       {
         '<leader>as',
         function()
-          require('sidekick.cli').select()
+          require('sidekick.cli').select({
+            filter = {
+              installed = true,
+            },
+          })
         end,
         desc = 'Select CLI',
       },
