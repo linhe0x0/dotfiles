@@ -17,6 +17,7 @@ return {
         'lua',
         'markdown',
         'markdown_inline',
+        'tsx',
         'typescript',
         'vim',
         'vimdoc',
