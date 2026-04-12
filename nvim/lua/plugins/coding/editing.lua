@@ -63,7 +63,7 @@ return {
   },
   {
     'windwp/nvim-ts-autotag',
-    event = 'VeryLazy',
+    ft = { 'html', 'typescriptreact', 'javascriptreact', 'vue', 'svelte', 'xml' },
     opts = {},
   },
   {
