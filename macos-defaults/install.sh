@@ -71,6 +71,9 @@ install_defaults() {
   # Repeats the key as long as it is held down.
   defaults write NSGlobalDomain "ApplePressAndHoldEnabled" -bool "false"
 
+  # Enable medium font smoothing (2 = medium; 1 = light, 2 = medium, 3 = heavy).
+  defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
+
   # Show the build duration in the Xcode's toolbar.
   defaults write com.apple.dt.Xcode "ShowBuildOperationDuration" -bool "true"
 
