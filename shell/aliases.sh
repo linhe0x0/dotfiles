@@ -2,8 +2,8 @@
 alias lsx='eza -lh --group-directories-first --icons=auto'
 alias lse='eza -lh --group-directories-first --icons=auto'
 alias lsa='lsx -a'
-alias lt='eza --tree --level=2 --long --icons --git'
-alias lta='lt -a'
+alias lst='eza --tree --level=2 --long --icons --git'
+alias lsta='lt -a'
 
 # Better `diff`
 alias diff='diff -u'          # diff file changes
