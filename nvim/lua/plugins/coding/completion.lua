@@ -25,11 +25,35 @@ return {
         ['<CR>'] = { 'accept', 'fallback' },
         ['<Tab>'] = {
           function(cmp)
-            if require('luasnip').in_snippet() then
-              return cmp.accept()
-            else
-              return cmp.select_and_accept()
+            local sidekick = require('sidekick')
+            if sidekick.nes_jump_or_apply() then
+              return true
             end
+
+            local copilot = require('copilot.suggestion')
+            if copilot.is_visible() then
+              copilot.accept()
+              return true
+            end
+
+            if vim.lsp then
+              for _, client in ipairs(vim.lsp.get_clients({ bufnr = 0 })) do
+                if client:supports_method('textDocument/inlineCompletion') then
+                  local ic = vim.lsp.inline_completion
+                  if ic and ic.get and ic.get() then
+                    ic.select()
+                    return true
+                  end
+                end
+              end
+            end
+
+            local luasnip = require('luasnip')
+            if luasnip.in_snippet() then
+              return cmp.accept()
+            end
+
+            return cmp.select_and_accept()
           end,
           'snippet_forward',
           'fallback',
