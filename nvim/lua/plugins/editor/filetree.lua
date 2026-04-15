@@ -35,7 +35,7 @@ return {
       },
     },
     deactivate = function()
-      vim.cmd([[Neotree close]])
+      require('neo-tree.command').execute({ action = 'close' })
     end,
     opts = {
       close_if_last_window = true,
