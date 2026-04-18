@@ -60,3 +60,6 @@ alias tf='tmux list-sessions -F "#S" | fzf | xargs tmux attach -t' # Fuzzy find 
 
 # Alias for sql-formatter
 alias sqlfmt='pbpaste | sql-formatter --config <(echo '\''{"tabWidth": 2, "keywordCase": "upper"}'\'') | tee >(pbcopy)'
+
+# LazyGit
+alias lg='lazygit'
