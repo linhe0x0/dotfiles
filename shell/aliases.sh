@@ -63,3 +63,8 @@ alias sqlfmt='pbpaste | sql-formatter --config <(echo '\''{"tabWidth": 2, "keywo
 
 # LazyGit
 alias lg='lazygit'
+
+# SSH Port Forwarding
+alias fip='ssh_forward_port'
+alias dip='ssh_disconnect_port'
+alias lip='ssh_list_forwards'

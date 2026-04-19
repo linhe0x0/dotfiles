@@ -29,3 +29,31 @@ get_internal_ip() {
 open_brew_package_home() {
   brew info "$1" | tee /dev/tty | sed -n '3p' | xargs open
 }
+
+# SSH Port Forwarding Functions
+#
+# Usage:
+#   ssh_forward_port <host> <port1> [port2] ...  - Forward local ports to remote host
+#   ssh_disconnect_port <port1> [port2] ...     - Disconnect port forwarding
+#   ssh_list_forwards                          - List active port forwards
+#
+# Aliases: fip, dip, lip
+ssh_forward_port() {
+  (($# < 2)) && echo "Usage: fip <host> <port1> [port2] ..." && return 1
+  local host="$1"
+  shift
+  for port in "$@"; do
+    ssh -f -N -L "$port:localhost:$port" "$host" && echo "Forwarding localhost:$port -> $host:$port"
+  done
+}
+
+ssh_disconnect_port() {
+  (($# == 0)) && echo "Usage: dip <port1> [port2] ..." && return 1
+  for port in "$@"; do
+    pkill -f "ssh.*-L $port:localhost:$port" && echo "Stopped forwarding port $port" || echo "No forwarding on port $port"
+  done
+}
+
+ssh_list_forwards() {
+  pgrep -af "ssh.*-L [0-9]+:localhost:[0-9]+" || echo "No active forwards"
+}
