@@ -245,18 +245,12 @@ return {
         vim.diagnostic.setloclist,
         vim.tbl_extend('force', opts, { desc = 'Set diagnostic loclist' })
       )
-      vim.keymap.set(
-        'n',
-        '[d',
-        vim.diagnostic.goto_prev,
-        vim.tbl_extend('force', opts, { desc = 'Previous diagnostic' })
-      )
-      vim.keymap.set(
-        'n',
-        ']d',
-        vim.diagnostic.goto_next,
-        vim.tbl_extend('force', opts, { desc = 'Next diagnostic' })
-      )
+      vim.keymap.set('n', '[d', function()
+        vim.diagnostic.jump({ count = -1, float = true })
+      end, vim.tbl_extend('force', opts, { desc = 'Previous diagnostic' }))
+      vim.keymap.set('n', ']d', function()
+        vim.diagnostic.jump({ count = 1, float = true })
+      end, vim.tbl_extend('force', opts, { desc = 'Next diagnostic' }))
 
       -- Use LspAttach autocommand to only map the following keys
       -- after the language server attaches to the current buffer
