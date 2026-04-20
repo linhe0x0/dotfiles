@@ -136,6 +136,8 @@ cask "font-geist-mono-nerd-font"
 cask "font-monaspice-nerd-font"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
+# Git client for simultaneous branches on top of your existing workflow
+cask "gitbutler"
 # Web browser
 cask "google-chrome"
 # Chromium-based web browser
