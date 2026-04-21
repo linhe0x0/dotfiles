@@ -140,6 +140,41 @@ return {
         end,
         desc = 'Sidekick Toggle OpenCode',
       },
+      {
+        '<leader>ai',
+        function()
+          local is_visual = vim.fn.mode():find('[vV\22]') ~= nil
+          local loc = ''
+          if is_visual then
+            local path = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':~:.')
+            local sl = math.min(vim.fn.line('.'), vim.fn.line('v'))
+            local el = math.max(vim.fn.line('.'), vim.fn.line('v'))
+            local sc = math.min(vim.fn.col('.'), vim.fn.col('v'))
+            local ec = math.max(vim.fn.col('.'), vim.fn.col('v'))
+            loc = '@' .. path .. ' :L' .. sl .. ':C' .. sc .. '-L' .. el .. ':C' .. ec
+          end
+
+          Snacks.input({
+            prompt = 'Ask AI:',
+            win = {
+              relative = 'cursor',
+              row = -2,
+              col = 0,
+            },
+          }, function(value)
+            if not value or value == '' then
+              return
+            end
+            if is_visual then
+              require('sidekick.cli').send({ msg = value .. '\n\n' .. loc })
+            else
+              require('sidekick.cli').send({ msg = value .. '\n\n{line}' })
+            end
+          end)
+        end,
+        mode = { 'n', 'x' },
+        desc = 'Sidekick Inline Prompt',
+      },
     },
   },
 }
