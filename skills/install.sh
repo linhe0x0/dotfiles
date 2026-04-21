@@ -53,8 +53,12 @@ install_skills() {
     --agent claude-code \
     --agent opencode
 
+  skills add https://github.com/github/awesome-copilot --global --yes \
+    --skill documentation-writer \
+    --agent claude-code \
+    --agent opencode
+
   skills add https://github.com/pbakaus/impeccable --global --yes \
-    --skill frontend-design \
     --agent claude-code \
     --agent opencode
 
