@@ -71,6 +71,15 @@ install_defaults() {
   # Repeats the key as long as it is held down.
   defaults write NSGlobalDomain "ApplePressAndHoldEnabled" -bool "false"
 
+  # Set key repeat rate to fast.
+  defaults write -g KeyRepeat -int 1
+
+  # Set initial key repeat delay to short.
+  defaults write -g InitialKeyRepeat -int 10
+
+  # Remove Caps Lock key delay.
+  /usr/bin/hidutil property --set '{"CapsLockDelayOverride":0}' &>/dev/null
+
   # Enable medium font smoothing (2 = medium; 1 = light, 2 = medium, 3 = heavy).
   defaults -currentHost write -globalDomain AppleFontSmoothing -int 2
 
