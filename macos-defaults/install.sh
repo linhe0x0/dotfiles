@@ -75,7 +75,7 @@ install_defaults() {
   defaults write -g KeyRepeat -int 1
 
   # Set initial key repeat delay to short.
-  defaults write -g InitialKeyRepeat -int 10
+  defaults write -g InitialKeyRepeat -int 15
 
   # Remove Caps Lock key delay.
   /usr/bin/hidutil property --set '{"CapsLockDelayOverride":0}' &>/dev/null
