@@ -72,7 +72,7 @@ install_defaults() {
   defaults write NSGlobalDomain "ApplePressAndHoldEnabled" -bool "false"
 
   # Set key repeat rate to fast.
-  defaults write -g KeyRepeat -int 1
+  defaults write -g KeyRepeat -int 2
 
   # Set initial key repeat delay to short.
   defaults write -g InitialKeyRepeat -int 15
