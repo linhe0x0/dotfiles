@@ -79,6 +79,8 @@ install_skills() {
 
   skills add https://github.com/kepano/obsidian-skills --global --yes \
     --skill obsidian-markdown \
+    --skill obsidian-bases \
+    --skill obsidian-cli \
     --agent claude-code \
     --agent opencode
 
