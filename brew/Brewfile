@@ -1,4 +1,3 @@
-tap "datlechin/tap"
 tap "dmno-dev/tap"
 tap "dotenvx/brew"
 tap "hashicorp/tap"
@@ -162,8 +161,8 @@ cask "raycast"
 cask "shottr"
 # Team communication and collaboration software
 cask "slack"
-# Native macOS database client for MySQL, PostgreSQL, SQLite, and MongoDB
-cask "datlechin/tap/tablepro"
+# Native database client for many database types
+cask "tablepro"
 # Open-source code editor
 cask "visual-studio-code"
 # REST, GraphQL and gRPC client
