@@ -163,8 +163,6 @@ cask "shottr"
 cask "slack"
 # Native database client for many database types
 cask "tablepro"
-# Open-source code editor
-cask "visual-studio-code"
 # REST, GraphQL and gRPC client
 cask "yaak"
 # Multiplayer code editor
@@ -183,22 +181,5 @@ mas "RocketSim", id: 1504940162
 mas "SnippetsLab", id: 1006087419
 mas "Toggl Track", id: 1291898086
 mas "Xcode", id: 497799835
-vscode "antfu.file-nesting"
-vscode "eamodio.gitlens"
-vscode "elijah-potter.harper"
-vscode "esbenp.prettier-vscode"
-vscode "github.github-vscode-theme"
-vscode "golang.go"
-vscode "hashicorp.hcl"
-vscode "hashicorp.terraform"
-vscode "hoovercj.vscode-dimmer"
-vscode "mermaidchart.vscode-mermaid-chart"
-vscode "redhat.vscode-yaml"
-vscode "streetsidesoftware.code-spell-checker"
-vscode "unifiedjs.vscode-mdx"
-vscode "usernamehw.errorlens"
-vscode "vscode-icons-team.vscode-icons"
-vscode "vscodevim.vim"
-vscode "vue.volar"
 go "golang.org/x/tools/gopls"
 go "honnef.co/go/tools/cmd/staticcheck"
