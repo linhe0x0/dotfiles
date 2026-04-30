@@ -31,7 +31,13 @@ install_skills() {
 
   skills add https://github.com/mattpocock/skills --global --yes \
     --skill grill-me \
+    --skill zoom-out \
+    --skill diagnose \
+    --skill improve-codebase-architecture \
+    --skill to-prd \
     --skill write-a-prd \
+    --skill prd-to-plan \
+    --skill edit-article \
     --agent claude-code \
     --agent opencode
 
