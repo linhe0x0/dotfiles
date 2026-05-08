@@ -33,6 +33,7 @@ install_skills() {
     --skill grill-me \
     --skill zoom-out \
     --skill diagnose \
+    --skill handoff \
     --skill improve-codebase-architecture \
     --skill to-prd \
     --skill write-a-prd \
