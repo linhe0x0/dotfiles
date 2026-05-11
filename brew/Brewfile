@@ -12,6 +12,8 @@ brew "awscli"
 brew "bat"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
+# Powerful, enterprise-ready, open source web server with automatic HTTPS
+brew "caddy"
 # Diff that understands syntax
 brew "difftastic"
 # Load/unload environment variables based on $PWD
