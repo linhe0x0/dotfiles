@@ -19,25 +19,30 @@ install_skills() {
 
   skills add https://github.com/obra/superpowers --global --yes \
     --skill brainstorming \
-    --skill systematic-debugging \
-    --skill writing-plans \
-    --skill executing-plans \
-    --skill test-driven-development \
-    --skill verification-before-completion \
-    --skill receiving-code-review \
-    --skill subagent-driven-development \
     --agent claude-code \
     --agent opencode
 
   skills add https://github.com/mattpocock/skills --global --yes \
     --skill grill-me \
-    --skill zoom-out \
-    --skill diagnose \
-    --skill handoff \
+    --skill grill-with-docs \
+    --skill grilling \
+    --skill triage \
     --skill improve-codebase-architecture \
-    --skill to-prd \
-    --skill write-a-prd \
-    --skill prd-to-plan \
+    --skill to-spec \
+    --skill to-tickets \
+    --skill implement \
+    --skill wayfinder \
+    --skill prototype \
+    --skill diagnosing-bugs \
+    --skill research \
+    --skill tdd \
+    --skill domain-modeling \
+    --skill codebase-design \
+    --skill code-review \
+    --skill zoom-out \
+    --skill handoff \
+    --skill teach \
+    --skill writing-great-skills \
     --skill edit-article \
     --agent claude-code \
     --agent opencode
