@@ -30,6 +30,7 @@ install_skills() {
     --skill improve-codebase-architecture \
     --skill to-spec \
     --skill to-tickets \
+    --skill to-questionnaire \
     --skill implement \
     --skill wayfinder \
     --skill prototype \
@@ -39,10 +40,11 @@ install_skills() {
     --skill domain-modeling \
     --skill codebase-design \
     --skill code-review \
-    --skill zoom-out \
+    --skill wizard \
     --skill handoff \
     --skill teach \
-    --skill writing-great-skills \
+    --skill writing-for-agents \
+    --skill wait-what \
     --skill edit-article \
     --agent claude-code \
     --agent opencode
