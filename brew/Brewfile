@@ -48,6 +48,8 @@ brew "go"
 brew "herdr"
 # Fast and powerful log viewer and processor
 brew "hl"
+# Review-first terminal diff viewer for agent-authored changesets
+brew "hunk"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
 # Simple terminal UI for git commands
