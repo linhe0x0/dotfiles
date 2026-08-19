@@ -17,11 +17,12 @@ source "../utils.sh"
 install_npm() {
   install "npm"
 
-  npm install -g --registry=https://registry.npmmirror.com \
+  npm install -g --registry=https://registry.npmmirror.com --ignore-scripts \
     cspell \
     prettier \
     skills \
-    sql-formatter
+    sql-formatter \
+    @earendil-works/pi-coding-agent
 
   npm list -g
 
