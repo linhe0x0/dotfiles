@@ -91,6 +91,28 @@ return {
         on_attach = on_attach,
       })
 
+      -- Official language server for Rust.
+      -- https://rust-analyzer.github.io/
+      vim.lsp.config('rust_analyzer', {
+        filetypes = { 'rust' },
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = {
+          ['rust-analyzer'] = {
+            cargo = {
+              loadOutDirsFromCheck = true,
+            },
+            check = {
+              command = 'clippy',
+            },
+            checkOnSave = true,
+            procMacro = {
+              enable = true,
+            },
+          },
+        },
+      })
+
       -- Enable some language servers with the additional completion capabilities
       -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#jsonls
       vim.lsp.config('jsonls', {
@@ -414,6 +436,7 @@ return {
         'vue_ls',
         'jsonls',
         'bashls',
+        'rust_analyzer', -- LSP server for Rust.
       },
       automatic_installation = true,
     },
