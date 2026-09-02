@@ -72,3 +72,11 @@ macos-option-as-alt = true
 # Updates
 auto-update = check
 auto-update-channel = stable
+
+# Commands
+command-palette-entry = title:Brew Update All, action:"text:brew update && brew upgrade --formula -yv \n"
+command-palette-entry = title:Brew Cleanup, action:"text:brew autoremove && brew cleanup --prune=all \n"
+command-palette-entry = title:Brew Outdated, action:"text:brew outdated \n"
+command-palette-entry = title:NPM Update Global, action:"text:npm update -g --verbose --ignore-scripts \n"
+command-palette-entry = title:NPM Outdated Global, action:"text:npm outdated -g \n"
+command-palette-entry = title:Update All Dev Tools, action:"text:brew update && brew upgrade --formula -yv; npm update -g --verbose --ignore-scripts; omz update \n"
