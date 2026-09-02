@@ -19,15 +19,29 @@ get_internal_ip() {
   fi
 }
 
-# Function to open the homepage of a brew package
+# Open a brew package's homepage in the default browser
 #
-# Usage: open_brew_package_home <package_name>
+# Usage: open_brew_package_home <package>
 #
-# Extracts the homepage URL from brew info (3rd line) and opens it in default browser
+# Output is one line, always:
+#   success -> "→ <url>"   (already open in your browser)
+#   failure -> "✗ <reason>" (and a non-zero exit)
 #
-# This function is aliased as 'brew_home' for convenience
 open_brew_package_home() {
-  brew info "$1" | tee /dev/tty | sed -n '3p' | xargs open
+  if (($# == 0)); then
+    echo "✗ Which package?" >&2
+    return 1
+  fi
+
+  local url
+  url=$(brew info "$1" 2>/dev/null | awk '/^https?:\/\// {print; exit}')
+
+  if [[ -z "$url" ]]; then
+    echo "✗ '$1' not found (no formula or cask by that name)" >&2
+    return 1
+  fi
+
+  open "$url" && echo "→ $url"
 }
 
 # SSH Port Forwarding Functions
