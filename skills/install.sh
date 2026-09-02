@@ -17,12 +17,6 @@ source "../utils.sh"
 install_skills() {
   install "skills"
 
-  skills add https://github.com/obra/superpowers --global --yes \
-    --skill brainstorming \
-    --agent claude-code \
-    --agent opencode \
-    --agent pi
-
   skills add https://github.com/mattpocock/skills --global --yes \
     --skill grill-me \
     --skill grill-with-docs \
