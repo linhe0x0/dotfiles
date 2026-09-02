@@ -45,6 +45,12 @@ install_skills() {
     --agent opencode \
     --agent pi
 
+  skills add https://github.com/dietrichgebert/ponytail --global --yes \
+    --skill ponytail \
+    --agent claude-code \
+    --agent opencode \
+    --agent pi
+
   skills add https://github.com/vercel-labs/agent-browser --global --yes \
     --skill agent-browser \
     --skill electron \
