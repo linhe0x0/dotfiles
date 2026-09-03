@@ -18,6 +18,7 @@ install_skills() {
   install "skills"
 
   skills add https://github.com/mattpocock/skills --global --yes \
+    --skill setup-matt-pocock-skills \
     --skill grill-me \
     --skill grill-with-docs \
     --skill grilling \
