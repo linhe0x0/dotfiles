@@ -52,6 +52,12 @@ install_skills() {
     --agent opencode \
     --agent pi
 
+  skills add https://github.com/humanlayer/skills --global --yes \
+    --skill show-me \
+    --agent claude-code \
+    --agent opencode \
+    --agent pi
+
   skills add https://github.com/cursor/plugins --global --yes \
     --skill show-me-your-work \
     --agent claude-code \
