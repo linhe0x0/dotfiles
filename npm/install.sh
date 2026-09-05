@@ -24,6 +24,9 @@ install_npm() {
     sql-formatter \
     @earendil-works/pi-coding-agent
 
+  # Pi plugins
+  pi install npm:pi-subagents
+
   npm list -g
 
   ok "npm"
