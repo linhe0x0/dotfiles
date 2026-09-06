@@ -13,8 +13,21 @@ cd "$(dirname "$0")"
 # source utils
 source "../utils.sh"
 
+# Clean existing skills before installing
+clean_skills() {
+  local dir
+  for dir in ~/.pi/agent/skills ~/.claude/skills ~/.agents/skills; do
+    if [ -d "$dir" ]; then
+      rm -rf "$dir"
+      info "Cleaned $dir"
+    fi
+  done
+}
+
 # Install Agent Skills
 install_skills() {
+  clean_skills
+
   install "skills"
 
   skills add https://github.com/mattpocock/skills --global --yes \
