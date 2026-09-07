@@ -155,6 +155,8 @@ cask "obsidian"
 cask "pearcleaner"
 # HTTP debugging proxy
 cask "proxyman"
+# Control your tools with a few keystrokes
+cask "raycast"
 # Screenshot measurement and annotation tool
 cask "shottr"
 # Native database client for many database types
