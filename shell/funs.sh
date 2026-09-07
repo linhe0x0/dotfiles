@@ -71,3 +71,48 @@ ssh_disconnect_port() {
 ssh_list_forwards() {
   pgrep -af "ssh.*-L [0-9]+:localhost:[0-9]+" || echo "No active forwards"
 }
+
+# Run a command while preventing idle sleep (wraps it in caffeinate -i)
+#
+# Usage: nosleep <command> [args...]
+# Example: nosleep ./slow-build.sh
+#
+# Exits with the wrapped command's exit status
+nosleep() {
+  echo "🔋 Mac will stay awake while the command runs; sleep resumes automatically when it finishes."
+  caffeinate -i "$@"
+}
+
+# Prevent idle sleep or display sleep (caffeinate wrappers)
+#
+# Each prints a hint, then runs caffeinate until Ctrl-C (or for a fixed time).
+# Extra args are passed through, e.g. `stay ./build.sh`
+stay() {
+  echo "🔋 Mac will stay awake until you press Ctrl-C"
+  caffeinate -i "$@"
+}
+
+screenon() {
+  echo "🔋 Display will stay on until you press Ctrl-C"
+  caffeinate -d "$@"
+}
+
+stay1h() {
+  echo "🔋 Mac will stay awake for the next hour"
+  caffeinate -i -t 3600 "$@"
+}
+
+stay2h() {
+  echo "🔋 Mac will stay awake for the next 2 hours"
+  caffeinate -i -t 7200 "$@"
+}
+
+stay4h() {
+  echo "🔋 Mac will stay awake for the next 4 hours"
+  caffeinate -i -t 14400 "$@"
+}
+
+stay8h() {
+  echo "🔋 Mac will stay awake for the next 8 hours"
+  caffeinate -i -t 28800 "$@"
+}
