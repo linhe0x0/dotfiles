@@ -46,7 +46,6 @@ alias ai='pi'
 alias cc="claude"
 alias cx='codex'
 alias oc='opencode'
-alias gm='gemini'
 
 # Tmux Session management
 alias t='tmux'
