@@ -72,7 +72,15 @@ install_skills() {
     --agent pi
 
   skills add https://github.com/cursor/plugins --global --yes \
+    --skill technical-writing \
     --skill show-me-your-work \
+    --skill how \
+    --skill why \
+    --skill unslop \
+    --skill no-comments \
+    --skill teach \
+    --skill create-verification-skill \
+    --skill maintain-verification-skill \
     --agent claude-code \
     --agent opencode \
     --agent pi
@@ -84,27 +92,21 @@ install_skills() {
     --agent opencode \
     --agent pi
 
-  skills add https://github.com/vercel-labs/agent-skills --global --yes \
-    --skill vercel-react-best-practices \
-    --skill vercel-composition-patterns \
-    --skill vercel-react-view-transitions \
-    --agent claude-code \
-    --agent opencode \
-    --agent pi
-
-  skills add https://github.com/github/awesome-copilot --global --yes \
-    --skill documentation-writer \
-    --agent claude-code \
-    --agent opencode \
-    --agent pi
-
   skills add https://github.com/pbakaus/impeccable --global --yes \
     --agent claude-code \
     --agent opencode \
     --agent pi
 
   skills add emilkowalski/skills --global --yes \
-    --skill emilkowalski-skills \
+    --skill emil-design-eng \
+    --skill animate \
+    --skill animate-expo \
+    --skill review-animations \
+    --skill improve-animations \
+    --skill find-animation-opportunities \
+    --skill animation-vocabulary \
+    --skill apple-design \
+    --skill write-swift \
     --agent claude-code \
     --agent opencode \
     --agent pi
