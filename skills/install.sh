@@ -100,7 +100,6 @@ install_skills() {
   skills add emilkowalski/skills --global --yes \
     --skill emil-design-eng \
     --skill animate \
-    --skill animate-expo \
     --skill review-animations \
     --skill improve-animations \
     --skill find-animation-opportunities \
