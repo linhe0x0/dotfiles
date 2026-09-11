@@ -92,12 +92,6 @@ install_skills() {
     --agent opencode \
     --agent pi
 
-  skills add https://github.com/anthropics/skills --global --yes \
-    --skill skill-creator \
-    --agent claude-code \
-    --agent opencode \
-    --agent pi
-
   skills add https://github.com/github/awesome-copilot --global --yes \
     --skill documentation-writer \
     --agent claude-code \
@@ -105,6 +99,12 @@ install_skills() {
     --agent pi
 
   skills add https://github.com/pbakaus/impeccable --global --yes \
+    --agent claude-code \
+    --agent opencode \
+    --agent pi
+
+  skills add emilkowalski/skills --global --yes \
+    --skill emilkowalski-skills \
     --agent claude-code \
     --agent opencode \
     --agent pi
