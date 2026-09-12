@@ -18,10 +18,10 @@ fish_add_path $HOME/.go/bin
 fish_add_path $HOME/.cargo/bin
 
 # Proxy brew source with ustc.
-set -gx HOMEBREW_BREW_GIT_REMOTE="https://mirrors.ustc.edu.cn/brew.git"
-set -gx HOMEBREW_CORE_GIT_REMOTE="https://mirrors.ustc.edu.cn/homebrew-core.git"
-set -gx HOMEBREW_API_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles/api"
-set -gx HOMEBREW_BOTTLE_DOMAIN="https://mirrors.ustc.edu.cn/homebrew-bottles"
+set -gx HOMEBREW_BREW_GIT_REMOTE 'https://mirrors.ustc.edu.cn/brew.git'
+set -gx HOMEBREW_CORE_GIT_REMOTE 'https://mirrors.ustc.edu.cn/homebrew-core.git'
+set -gx HOMEBREW_API_DOMAIN 'https://mirrors.ustc.edu.cn/homebrew-bottles/api'
+set -gx HOMEBREW_BOTTLE_DOMAIN 'https://mirrors.ustc.edu.cn/homebrew-bottles'
 
 # Set theme for bat syntax highlighting.
 # Or just call bat with the --theme=DarkNeon option
