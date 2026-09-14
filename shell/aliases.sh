@@ -5,6 +5,9 @@ alias lsa='lsx -a'
 alias lst='eza --tree --level=2 --long --icons --git'
 alias lsta='lt -a'
 
+# Better `tree`
+alias tree='tree --gitignore' # Ignore files matched by .gitignore
+
 # Better `diff`
 alias diff='diff -u'          # diff file changes
 alias diffy='command diff -y' # diff changes side by side.
