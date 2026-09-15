@@ -161,12 +161,15 @@ cask "raycast"
 cask "shottr"
 # Native database client for many database types
 cask "tablepro"
+# Mesh VPN based on WireGuard
+cask "tailscale-app"
 # REST, GraphQL and gRPC client
 cask "yaak"
 # Multiplayer code editor
 cask "zed"
 mas "Amphetamine", id: 937984704
 mas "iMovie", id: 408981434
+mas "Maipo", id: 789066512
 mas "Microsoft To Do", id: 1274495053
 mas "Paste", id: 967805235
 mas "Plain Text Editor", id: 1572202501
@@ -174,6 +177,7 @@ mas "Pure Paste", id: 1611378436
 mas "RocketSim", id: 1504940162
 mas "Xcode", id: 497799835
 npm "@earendil-works/pi-coding-agent"
+npm "agent-browser"
 npm "cspell"
 npm "prettier"
 npm "skills"
