@@ -49,6 +49,7 @@ install_skills() {
     --skill domain-modeling \
     --skill codebase-design \
     --skill code-review \
+    --skill retro \
     --skill wizard \
     --skill handoff \
     --skill teach \
