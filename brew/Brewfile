@@ -4,6 +4,8 @@ tap "tw93/tap", trusted: true
 brew "asc"
 # Code searching, linting, rewriting
 brew "ast-grep"
+# Linter and formatter to improve copywriting, correct spaces, words between CJK
+brew "autocorrect"
 # Official Amazon AWS command-line interface
 brew "awscli"
 # Clone of cat(1) with syntax highlighting and Git integration
