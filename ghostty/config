@@ -77,11 +77,13 @@ shell-integration-features = no-cursor, no-sudo, title, ssh-env, ssh-terminfo, p
 
 # Keyboard
 macos-option-as-alt = true
-keybind = global:cmd+grave_accent=toggle_quick_terminal
 
 # Updates
 auto-update = check
 auto-update-channel = stable
+
+# Keybindings
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
 # Commands
 command-palette-entry = title:Brew Update All, action:"text:brew update && brew upgrade --formula -yv \n"
