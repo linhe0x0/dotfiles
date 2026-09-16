@@ -137,6 +137,12 @@ install_skills() {
     --agent opencode \
     --agent pi
 
+  skills add https://github.com/blader/humanizer --global --yes \
+    --skill humanizer \
+    --agent claude-code \
+    --agent opencode \
+    --agent pi
+
   skills add https://github.com/garrytan/gstack --global --yes \
     --skill gstack \
     --agent claude-code \
