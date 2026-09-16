@@ -63,6 +63,7 @@ alias tk='tmux kill-session -t'                                    # Kill sessio
 alias tks='tmux kill-server'                                       # Kill tmux server entirely
 alias tr='tmux rename-session -t'                                  # Rename session
 alias tf='tmux list-sessions -F "#S" | fzf | xargs tmux attach -t' # Fuzzy find and attach to tmux session
+alias tdl='tmux_dev_layout'                                        # Open the dev layout (herdr + lazygit + terminal)
 
 # Alias for sql-formatter
 alias sqlfmt='pbpaste | sql-formatter --config <(echo '\''{"tabWidth": 2, "keywordCase": "upper"}'\'') | tee >(pbcopy)'

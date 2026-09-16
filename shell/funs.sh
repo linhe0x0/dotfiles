@@ -77,10 +77,12 @@ ssh_list_forwards() {
 # opens a new window in the current session; outside tmux it creates and
 # attaches a `dev` session first.
 #
-# Usage: tdl [agent]
+# This function is aliased as 'tdl' for convenience.
+#
+# Usage: tmux_dev_layout [agent]
 #   agent  Command run inside herdr for the AI agent; it resolves through
 #          shell aliases, so it defaults to 'ai' (e.g. tdl, tdl cc).
-tdl() {
+tmux_dev_layout() {
   local agent="${1:-ai}"
 
   local left right term
