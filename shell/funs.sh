@@ -73,9 +73,11 @@ ssh_list_forwards() {
 }
 
 # Open a dev layout in tmux: left pane runs herdr with the AI agent, right
-# side splits into lazygit (top) and a terminal (bottom). Inside tmux it
-# opens a new window in the current session; outside tmux it creates and
-# attaches a `dev` session first.
+# side splits into lazygit (top) and a terminal (bottom). The layout is
+# named dev-<slug> after the current directory's name. Inside tmux it
+# opens a new window (if one exists already, it warns and exits); outside
+# tmux it creates and attaches a session first (attaching to the existing
+# one if it already exists).
 #
 # This function is aliased as 'tdl' for convenience.
 #
@@ -85,17 +87,25 @@ ssh_list_forwards() {
 tmux_dev_layout() {
   local agent="${1:-ai}"
 
+  # tmux rejects '.' and ':' in session names, so replace them
+  local name="dev-${PWD##*/}"
+  name="${name//[.:]/-}"
+
   local left right term
   if [[ -n "$TMUX" ]]; then
-    tmux new-window -n dev -c "$PWD"
+    if tmux list-windows -F '#{window_name}' | grep -qx "$name"; then
+      echo "✗ tmux window '$name' already exists" >&2
+      return 1
+    fi
+    tmux new-window -n "$name" -c "$PWD"
     left=$(tmux display-message -p '#{pane_id}')
   else
-    if tmux has-session -t dev 2>/dev/null; then
-      tmux attach -t dev
+    if tmux has-session -t "$name" 2>/dev/null; then
+      tmux attach -t "$name"
       return
     fi
-    tmux new-session -d -s dev -n dev -c "$PWD"
-    left=$(tmux list-panes -t dev: -F '#{pane_id}')
+    tmux new-session -d -s "$name" -n "$name" -c "$PWD"
+    left=$(tmux list-panes -t "$name": -F '#{pane_id}')
   fi
 
   # Layout: herdr takes two thirds on the left; the right third splits into
