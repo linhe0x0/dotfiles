@@ -72,75 +72,47 @@ ssh_list_forwards() {
   pgrep -af "ssh.*-L [0-9]+:localhost:[0-9]+" || echo "No active forwards"
 }
 
-# Open a dev layout in tmux: left pane runs herdr with the AI agent, right
-# side splits into lazygit (top) and a terminal (bottom). The layout is
-# named dev-<slug>, where slug is the enclosing git repository's name (the
-# current directory when outside a repo). Inside tmux it
-# opens a new window (if one exists already, it warns and exits); outside
-# tmux it creates and attaches a session first (attaching to the existing
-# one if it already exists). Herdr gets one workspace per repo, created at
-# the repo root.
+# Open a dev layout in tmux: the left pane stays as a plain shell for you to
+# start the AI agent manually, the right side splits into lazygit (top two
+# thirds) and a terminal (bottom third). Herdr is not involved. The window
+# is named dev-<slug>, where slug is the enclosing git repository's name
+# (the current directory when outside a repo). Inside tmux it focuses the
+# dev-<slug> window if one exists, otherwise the current window is renamed
+# and the layout is built in place; outside tmux it
+# creates and attaches a session named dev first (attaching to the existing
+# one if it already exists).
 #
 # This function is aliased as 'tdl' for convenience.
-#
-# Usage: tmux_dev_layout [agent]
-#   agent  Command run inside herdr for the AI agent; it resolves through
-#          shell aliases, so it defaults to 'ai' (e.g. tdl, tdl cc).
 tmux_dev_layout() {
-  local agent="${1:-ai}"
-
-  # One workspace per repo: identity is the git repo root, falling back to
-  # the current directory outside a repo.
   local root
   root=$(git rev-parse --show-toplevel 2>/dev/null) || root=$PWD
   local slug="${root##*/}"
-  slug="${slug//[.:]/-}" # tmux rejects '.' and ':' in names
+  slug="${slug//[.:]/-}" # avoid '.' and ':' in tmux names
   local name="dev-$slug"
 
   local left right term
   if [[ -n "$TMUX" ]]; then
     if tmux list-windows -F '#{window_name}' | grep -qx "$name"; then
-      echo "✗ tmux window '$name' already exists" >&2
-      return 1
-    fi
-    tmux new-window -n "$name" -c "$PWD"
-    left=$(tmux display-message -p '#{pane_id}')
-  else
-    if tmux has-session -t "$name" 2>/dev/null; then
-      tmux attach -t "$name"
+      tmux select-window -t "$name"
       return
     fi
-    tmux new-session -d -s "$name" -n "$name" -c "$PWD"
-    left=$(tmux list-panes -t "$name": -F '#{pane_id}')
+    tmux rename-window "$name"
+    left=$(tmux display-message -p '#{pane_id}')
+  else
+    if tmux has-session -t dev 2>/dev/null; then
+      tmux attach -t dev
+      return
+    fi
+    tmux new-session -d -s dev -n "$name" -c "$PWD"
+    left=$(tmux list-panes -t dev: -F '#{pane_id}')
   fi
 
-  # Layout: herdr takes two thirds on the left; the right third splits into
-  # lazygit (top two thirds) and a terminal (bottom third).
+  # Layout: the left pane is left empty (run your agent there); the right
+  # third splits into lazygit (top two thirds) and a terminal (bottom third).
   right=$(tmux split-window -h -l 33% -t "$left" -c "$PWD" -P -F '#{pane_id}')
   term=$(tmux split-window -v -l 33% -t "$right" -c "$PWD" -P -F '#{pane_id}')
 
-  tmux send-keys -t "$left" 'herdr' Enter
   tmux send-keys -t "$right" 'lazygit' Enter
-
-  # Once herdr's server is up, make sure a workspace exists for this repo
-  # (matched by label), focus it, and start the agent there — unless one is
-  # already running in that workspace.
-  local i ws pane
-  for i in {1..30}; do herdr pane list >/dev/null 2>&1 && break; sleep 0.5; done
-
-  ws=$(herdr workspace list 2>/dev/null | jq -r --arg label "$slug" \
-    '[.result.workspaces[] | select(.label == $label)][0].workspace_id // empty')
-  if [[ -n "$ws" ]]; then
-    herdr workspace focus "$ws" >/dev/null 2>&1
-    if [[ "$(herdr agent list 2>/dev/null | jq --arg ws "$ws" \
-      '[.result.agents[] | select(.workspace_id == $ws)] | length')" == "0" ]]; then
-      pane=$(herdr pane list --workspace "$ws" 2>/dev/null | jq -r '.result.panes[0].pane_id // empty')
-      [[ -n "$pane" ]] && herdr pane run "$pane" "$agent"
-    fi
-  else
-    pane=$(herdr workspace create --label "$slug" --cwd "$root" | jq -r '.result.root_pane.pane_id')
-    [[ -n "$pane" && "$pane" != "null" ]] && herdr pane run "$pane" "$agent"
-  fi
 
   tmux select-pane -t "$left"
   if [[ -z "$TMUX" ]]; then
