@@ -74,10 +74,12 @@ ssh_list_forwards() {
 
 # Open a dev layout in tmux: left pane runs herdr with the AI agent, right
 # side splits into lazygit (top) and a terminal (bottom). The layout is
-# named dev-<slug> after the current directory's name. Inside tmux it
+# named dev-<slug>, where slug is the enclosing git repository's name (the
+# current directory when outside a repo). Inside tmux it
 # opens a new window (if one exists already, it warns and exits); outside
 # tmux it creates and attaches a session first (attaching to the existing
-# one if it already exists).
+# one if it already exists). Herdr gets one workspace per repo, created at
+# the repo root.
 #
 # This function is aliased as 'tdl' for convenience.
 #
@@ -87,9 +89,13 @@ ssh_list_forwards() {
 tmux_dev_layout() {
   local agent="${1:-ai}"
 
-  # tmux rejects '.' and ':' in session names, so replace them
-  local name="dev-${PWD##*/}"
-  name="${name//[.:]/-}"
+  # One workspace per repo: identity is the git repo root, falling back to
+  # the current directory outside a repo.
+  local root
+  root=$(git rev-parse --show-toplevel 2>/dev/null) || root=$PWD
+  local slug="${root##*/}"
+  slug="${slug//[.:]/-}" # tmux rejects '.' and ':' in names
+  local name="dev-$slug"
 
   local left right term
   if [[ -n "$TMUX" ]]; then
@@ -116,16 +122,23 @@ tmux_dev_layout() {
   tmux send-keys -t "$left" 'herdr' Enter
   tmux send-keys -t "$right" 'lazygit' Enter
 
-  # Once herdr's server is up, start the agent through the alias in its root
-  # shell pane — unless an agent is already running in herdr.
-  local i pane
+  # Once herdr's server is up, make sure a workspace exists for this repo
+  # (matched by label), focus it, and start the agent there — unless one is
+  # already running in that workspace.
+  local i ws pane
   for i in {1..30}; do herdr pane list >/dev/null 2>&1 && break; sleep 0.5; done
-  if [[ "$(herdr agent list 2>/dev/null | jq '.result.agents | length')" == "0" ]]; then
-    if [[ "$(herdr workspace list 2>/dev/null | jq '.result.workspaces | length')" == "0" ]]; then
-      pane=$(herdr workspace create --label dev --cwd "$PWD" | jq -r '.result.root_pane.pane_id')
-    else
-      pane=$(herdr pane list 2>/dev/null | jq -r '.result.panes[0].pane_id')
+
+  ws=$(herdr workspace list 2>/dev/null | jq -r --arg label "$slug" \
+    '[.result.workspaces[] | select(.label == $label)][0].workspace_id // empty')
+  if [[ -n "$ws" ]]; then
+    herdr workspace focus "$ws" >/dev/null 2>&1
+    if [[ "$(herdr agent list 2>/dev/null | jq --arg ws "$ws" \
+      '[.result.agents[] | select(.workspace_id == $ws)] | length')" == "0" ]]; then
+      pane=$(herdr pane list --workspace "$ws" 2>/dev/null | jq -r '.result.panes[0].pane_id // empty')
+      [[ -n "$pane" ]] && herdr pane run "$pane" "$agent"
     fi
+  else
+    pane=$(herdr workspace create --label "$slug" --cwd "$root" | jq -r '.result.root_pane.pane_id')
     [[ -n "$pane" && "$pane" != "null" ]] && herdr pane run "$pane" "$agent"
   fi
 
