@@ -18,7 +18,7 @@ clean_skills() {
   local dir
   for dir in ~/.pi/agent/skills ~/.claude/skills ~/.agents/skills; do
     if [ -d "$dir" ]; then
-      rm -rf "$dir"
+      rm -r "$dir"
       info "Cleaned $dir"
     fi
   done
