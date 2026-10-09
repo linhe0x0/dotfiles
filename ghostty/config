@@ -86,9 +86,9 @@ auto-update-channel = stable
 keybind = global:ctrl+grave_accent=toggle_quick_terminal
 
 # Commands
-command-palette-entry = title:Brew Update All, action:"text:brew update && brew upgrade --formula -yv \n"
+command-palette-entry = title:Brew Update All, action:"text:brew update && brew upgrade --formula -y && brew autoremove && brew cleanup --prune=all \n"
 command-palette-entry = title:Brew Cleanup, action:"text:brew autoremove && brew cleanup --prune=all \n"
 command-palette-entry = title:Brew Outdated, action:"text:brew outdated \n"
-command-palette-entry = title:NPM Update Global, action:"text:npm update -g --verbose --ignore-scripts \n"
+command-palette-entry = title:NPM Update Global, action:"text:npm update -g --ignore-scripts \n"
 command-palette-entry = title:NPM Outdated Global, action:"text:npm outdated -g \n"
-command-palette-entry = title:Dev Update All, action:"text:brew update && brew upgrade --formula -yv; npm update -g --verbose --ignore-scripts; omz update \n"
+command-palette-entry = title:Dev Update All, action:"text:brew update && brew upgrade --formula -y && brew autoremove && brew cleanup --prune=all; print '==> Updating global npm packages...' && npm update -g --ignore-scripts; omz update \n"
