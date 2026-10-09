@@ -20,6 +20,13 @@ success() {
 }
 
 ###
+# Print an error-level message.
+###
+error() {
+  printf "\r\033[2K[\033[0;31mERROR\033[0m] $1\n"
+}
+
+###
 # Print a fail-level message and exit the process by 1.
 ###
 fail() {

@@ -23,4 +23,9 @@ install_nvim() {
   ok "neovim"
 }
 
-install_nvim
+# skip installation when nvim is not available.
+if command -v nvim > /dev/null 2>&1; then
+  install_nvim
+else
+  error "nvim command not found. Please install Neovim first: https://github.com/neovim/neovim#install-from-package"
+fi
