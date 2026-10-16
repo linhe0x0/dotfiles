@@ -50,6 +50,7 @@ install_skills() {
     --skill codebase-design \
     --skill code-review \
     --skill retro \
+    --skill pr \
     --skill wizard \
     --skill handoff \
     --skill teach \
