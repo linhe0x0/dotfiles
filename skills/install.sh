@@ -112,12 +112,6 @@ install_skills() {
     --agent opencode \
     --agent pi
 
-  skills add https://github.com/remotion-dev/skills --global --yes \
-    --skill remotion-best-practices \
-    --agent claude-code \
-    --agent opencode \
-    --agent pi
-
   skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill --global --yes \
     --skill ui-ux-pro-max \
     --agent claude-code \
@@ -126,20 +120,6 @@ install_skills() {
 
   skills add https://github.com/supabase/agent-skills --global --yes \
     --skill supabase-postgres-best-practices \
-    --agent claude-code \
-    --agent opencode \
-    --agent pi
-
-  skills add https://github.com/kepano/obsidian-skills --global --yes \
-    --skill obsidian-markdown \
-    --skill obsidian-bases \
-    --skill obsidian-cli \
-    --agent claude-code \
-    --agent opencode \
-    --agent pi
-
-  skills add https://github.com/blader/humanizer --global --yes \
-    --skill humanizer \
     --agent claude-code \
     --agent opencode \
     --agent pi
