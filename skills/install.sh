@@ -73,20 +73,6 @@ install_skills() {
     --agent opencode \
     --agent pi
 
-  skills add https://github.com/cursor/plugins --global --yes \
-    --skill technical-writing \
-    --skill show-me-your-work \
-    --skill how \
-    --skill why \
-    --skill unslop \
-    --skill no-comments \
-    --skill teach \
-    --skill create-verification-skill \
-    --skill maintain-verification-skill \
-    --agent claude-code \
-    --agent opencode \
-    --agent pi
-
   skills add https://github.com/vercel-labs/agent-browser --global --yes \
     --skill agent-browser \
     --skill electron \
