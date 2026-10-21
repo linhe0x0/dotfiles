@@ -62,7 +62,7 @@ alias tl='tmux list-sessions'                                      # List all se
 alias tk='tmux kill-session -t'                                    # Kill session: tk mysession
 alias tks='tmux kill-server'                                       # Kill tmux server entirely
 alias tr='tmux rename-session -t'                                  # Rename session
-alias tf='tmux list-sessions -F "#S" | fzf | xargs tmux attach -t' # Fuzzy find and attach to tmux session
+alias tf='session="$(tmux list-sessions -F "#S" | fzf)" && [ -n "$session" ] && tmux attach -t "$session"' # Fuzzy find and attach to tmux session
 alias tdl='tmux_dev_layout'                                        # Dev layout in tmux (shell + lazygit + terminal)
 
 # Alias for sql-formatter
