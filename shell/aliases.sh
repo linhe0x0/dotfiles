@@ -75,3 +75,12 @@ alias lg='lazygit'
 alias fip='ssh_forward_port'
 alias dip='ssh_disconnect_port'
 alias lip='ssh_list_forwards'
+
+# Git worktree workflow (functions in funs.sh)
+alias gwf='git_worktree_cd'      # Fuzzy find a worktree and cd into it
+alias gwl='git worktree list'    # List worktrees
+alias gwa='git_worktree_add'     # Add a worktree for an existing branch: gwa <branch>
+alias gwn='git_worktree_add -b'  # New branch + worktree: gwn <branch>
+alias gwr='git_worktree_remove'  # Remove a worktree (fzf when no argument)
+alias gwd='git_worktree_finish'  # Merge into main worktree's branch, remove worktree, delete branch
+alias gwp='git worktree prune'   # Prune stale worktree metadata

@@ -164,3 +164,170 @@ stay8h() {
   echo "🔋 Mac will stay awake for the next 8 hours"
   caffeinate -i -t 28800 "$@"
 }
+
+# Git worktree workflow
+#
+# Worktrees live in a sibling directory of the main worktree, named
+# "<repo>-worktree". A branch's "/" becomes "-" in its directory name:
+#   repo:  ~/Sites/github.com/acme/api              (main worktree)
+#   work:  ~/Sites/github.com/acme/api-worktree/feat-login
+#
+# Aliases: gwf gwl gwa gwn gwr gwd gwp (see aliases.sh)
+git_worktree_main() {
+  git worktree list --porcelain 2>/dev/null | sed -n 's/^worktree //p' | head -n 1
+}
+
+# Add a worktree and cd into it. Shared by gwa and gwn:
+#   git_worktree_add <branch>     check out an existing branch
+#   git_worktree_add -b <branch>  create the branch, then its worktree
+git_worktree_add() {
+  local create=false
+  if [[ "$1" == "-b" ]]; then
+    create=true
+    shift
+  fi
+  if (($# != 1)); then
+    echo "Usage: gwa <branch> | gwn <branch>" >&2
+    return 1
+  fi
+
+  local branch="$1"
+  if [[ "$create" == true ]] && git show-ref --verify --quiet "refs/heads/$branch"; then
+    echo "✗ Branch '$branch' already exists (use gwa to check it out)" >&2
+    return 1
+  fi
+  if [[ "$create" == false ]] && ! git show-ref --verify --quiet "refs/heads/$branch"; then
+    echo "✗ Branch '$branch' not found (use gwn to create it)" >&2
+    return 1
+  fi
+
+  # Never name a local 'path': in zsh it shadows the tied PATH array.
+  local main parent dir
+  main=$(git_worktree_main) || return 1
+  parent="$(dirname "$main")/${main##*/}-worktree"
+  dir="$parent/${branch//\//-}"
+  mkdir -p "$parent"
+
+  if [[ "$create" == true ]]; then
+    git worktree add -b "$branch" "$dir" || return 1
+  else
+    git worktree add "$dir" "$branch" || return 1
+  fi
+  cd "$dir" && echo "→ $dir"
+}
+
+# Remove a worktree. Without arguments, pick one with fzf (the main
+# worktree is excluded). Dirty worktrees are refused by git; pass a path
+# and --force yourself if you really want to discard them.
+git_worktree_remove() {
+  if (($# == 0)); then
+    local main sel list
+    main=$(git_worktree_main) || return 1
+    list=$(git worktree list | awk -v main="$main" '$1 != main')
+    if [[ -z "$list" ]]; then
+      echo "No linked worktrees"
+      return 0
+    fi
+    sel=$(fzf --tmux center --border-label=" git worktree " --style full \
+      --preview="git -C {1} status -sb" \
+      --header="enter = remove, esc = cancel" <<< "$list") || return 0
+    [[ -n "$sel" ]] || return 0
+    set -- "${sel%% *}"
+  fi
+  git worktree remove "$@" && echo "→ Removed $*"
+}
+
+# Finish the work in a linked worktree: fast-forward the branch checked out
+# in the main worktree to the worktree's branch, then remove the worktree,
+# delete the branch, and cd back to the main worktree. Nothing is pushed.
+#   git_worktree_finish            finish the current worktree, or pick one
+#                                  with fzf when run from the main worktree
+#   git_worktree_finish <path>     finish the worktree at that path
+# A dirty worktree is refused (ignored files don't count). If the branch has
+# diverged from the main worktree's branch, the merge is refused and nothing
+# is cleaned up; rebase the worktree branch yourself.
+git_worktree_finish() {
+  git rev-parse --git-dir >/dev/null 2>&1 || { echo "✗ Not inside a git repository" >&2; return 1; }
+  local main dir="$1"
+  main=$(git_worktree_main) || return 1
+  if [[ -n "$dir" ]]; then
+    dir=$(git -C "$dir" rev-parse --show-toplevel 2>/dev/null) || { echo "✗ Not a worktree: $1" >&2; return 1; }
+  else
+    # Inside a linked worktree? Finish it; otherwise pick one with fzf.
+    dir=$(git rev-parse --show-toplevel)
+    if [[ "$dir" == "$main" ]]; then
+      local sel list
+      list=$(git worktree list | awk -v main="$main" '$1 != main')
+      if [[ -z "$list" ]]; then
+        echo "No linked worktrees (create one with gwn <branch>)"
+        return 0
+      fi
+      sel=$(fzf --tmux center --border-label=" git worktree " --style full \
+        --preview="git -C {1} status -sb" \
+        --header="enter = finish, esc = cancel" <<< "$list") || return 0
+      [[ -n "$sel" ]] || return 0
+      dir="${sel%% *}"
+    fi
+  fi
+  if [[ "$dir" == "$main" ]]; then
+    echo "✗ $dir is the main worktree; run gwd inside a linked worktree or pass its path" >&2
+    return 1
+  fi
+
+  local branch base
+  branch=$(git -C "$dir" branch --show-current)
+  if [[ -z "$branch" ]]; then
+    echo "✗ Detached HEAD in $dir; nothing to merge" >&2
+    return 1
+  fi
+  base=$(git -C "$main" branch --show-current)
+  if [[ -z "$base" ]]; then
+    echo "✗ Main worktree is in detached HEAD state; cannot merge" >&2
+    return 1
+  fi
+  if [[ -n "$(git -C "$dir" status --porcelain)" ]]; then
+    echo "✗ Worktree is dirty; commit or stash first" >&2
+    return 1
+  fi
+
+  if ! git -C "$main" merge --ff-only "$branch"; then
+    echo "✗ Cannot fast-forward $base to $branch; rebase the worktree branch first (worktree kept)" >&2
+    return 1
+  fi
+  cd "$main" || return 1
+  git worktree remove "$dir" || return 1
+  git branch -d "$branch" &&
+    echo "→ Merged $branch into $base; removed worktree and branch"
+}
+
+# Fuzzy find a linked worktree of the current repository and cd into it.
+# Entries show "<branch> <path>", with paths relative to the main repo's
+# root directory (e.g. ../api-worktree/feat-login); the main worktree is
+# excluded. Worktrees outside that directory tree show absolute paths.
+git_worktree_cd() {
+  git rev-parse --git-dir >/dev/null 2>&1 || { echo "✗ Not inside a git repository" >&2; return 1; }
+  local main list sel dest
+  main=$(git_worktree_main) || return 1
+  list=$(git worktree list |
+    awk -v main="$main" -v parent="$(dirname "$main")" '$1 != main {
+      branch = "(detached)"
+      if (match($0, /\[[^]]+\]/))
+        branch = substr($0, RSTART + 1, RLENGTH - 2)
+      p = $1
+      if (index(p, parent "/") == 1)
+        p = "../" substr(p, length(parent) + 2)
+      printf "%-28s %s\n", branch, p
+    }')
+  if [[ -z "$list" ]]; then
+    echo "No linked worktrees (create one with gwn <branch>)"
+    return 0
+  fi
+  sel=$(fzf --tmux center --border-label=" git worktree " --style full \
+    --preview="git -C {2} status -sb" <<< "$list") || return 0
+  [[ -n "$sel" ]] || return 0
+  sel="${sel%%$'\n'*}" # --filter/--multi can emit several lines; keep the best-ranked one
+  # Relative entries are anchored to the main repo's root, not $PWD.
+  dest="${sel##* }"
+  [[ "$dest" == /* ]] || dest="$main/$dest"
+  cd "$dest"
+}
