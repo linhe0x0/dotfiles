@@ -72,6 +72,8 @@ vim.api.nvim_create_autocmd('FileType', {
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = true
+    -- Skip CJK characters so spell checking covers English words only
+    vim.opt_local.spelllang = { 'en', 'cjk' }
   end,
 })
 
