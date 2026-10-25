@@ -17,7 +17,7 @@ alias vim="$(command -v nvim)"
 alias view="vim -R" # open a file in read-only mode
 
 # Get ip as soon as possible.
-alias ip='curl -s https://httpbin.org/ip | jq -r ".origin"' # Get the external IP address
+alias ip='curl -4 -s https://www.cloudflare.com/cdn-cgi/trace | sed -n "s/^ip=//p"' # Get the external IP address
 alias iip='get_internal_ip'                              # Get the internal IP address
 
 # Quick start or close proxy
