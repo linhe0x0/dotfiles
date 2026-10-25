@@ -65,9 +65,6 @@ alias tr='tmux rename-session -t'                                  # Rename sess
 alias tf='session="$(tmux list-sessions -F "#S" | fzf)" && [ -n "$session" ] && tmux attach -t "$session"' # Fuzzy find and attach to tmux session
 alias tdl='tmux_dev_layout'                                        # Dev layout in tmux (shell + lazygit + terminal)
 
-# Alias for sql-formatter
-alias sqlfmt='pbpaste | sql-formatter --config <(echo '\''{"tabWidth": 2, "keywordCase": "upper"}'\'') | tee >(pbcopy)'
-
 # LazyGit
 alias lg='lazygit'
 

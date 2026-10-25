@@ -21,7 +21,6 @@ install_npm() {
     cspell \
     prettier \
     skills \
-    sql-formatter \
     @earendil-works/pi-coding-agent
 
   # Pi plugins
