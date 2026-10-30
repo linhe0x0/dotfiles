@@ -1,5 +1,7 @@
 tap "hashicorp/tap", trusted: true
 tap "tw93/tap", trusted: true
+# Universal Command-Line Interface for Alibaba Cloud
+brew "aliyun-cli"
 # Fast, lightweight CLI for App Store Connect
 brew "asc"
 # Code searching, linting, rewriting
@@ -14,8 +16,8 @@ brew "bat"
 brew "btop"
 # Powerful, enterprise-ready, open source web server with automatic HTTPS
 brew "caddy"
-# CLI tool for Cloudflare Workers
-brew "cloudflare-wrangler"
+# Create and run Linux containers using lightweight virtual machines
+brew "container"
 # Diff that understands syntax
 brew "difftastic"
 # Load/unload environment variables based on $PWD
@@ -135,6 +137,7 @@ cask "cloudflare-warp"
 cask "font-fira-code-nerd-font"
 cask "font-geist-mono-nerd-font"
 cask "font-monaspice-nerd-font"
+cask "font-paper-mono"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
 # Git client for simultaneous branches on top of your existing workflow
@@ -145,6 +148,8 @@ cask "google-chrome"
 cask "helium-browser"
 # Tool for multi-language users
 cask "input-source-pro"
+# App to manage software development and track bugs
+cask "linear"
 # Smooths scrolling and set mouse scroll directions independently
 cask "mos"
 # Free and open-source RSS reader
