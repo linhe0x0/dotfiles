@@ -140,11 +140,6 @@ stay() {
   caffeinate -i "$@"
 }
 
-screenon() {
-  echo "🔋 Display will stay on until you press Ctrl-C"
-  caffeinate -d "$@"
-}
-
 stay1h() {
   echo "🔋 Mac will stay awake for the next hour"
   caffeinate -i -t 3600 "$@"
@@ -163,6 +158,11 @@ stay4h() {
 stay8h() {
   echo "🔋 Mac will stay awake for the next 8 hours"
   caffeinate -i -t 28800 "$@"
+}
+
+screenon() {
+  echo "🔋 Display will stay on until you press Ctrl-C"
+  caffeinate -d "$@"
 }
 
 # Git worktree workflow
