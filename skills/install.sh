@@ -40,9 +40,10 @@ install_skills() {
     --skill improve-codebase-architecture \
     --skill to-spec \
     --skill to-tickets \
-    --skill to-questionnaire \
     --skill implement \
+    --skill implement-spec \
     --skill wayfinder \
+    --skill retro \
     --skill prototype \
     --skill diagnosing-bugs \
     --skill research \
@@ -50,14 +51,13 @@ install_skills() {
     --skill domain-modeling \
     --skill codebase-design \
     --skill code-review \
-    --skill retro \
     --skill pr \
     --skill wizard \
     --skill handoff \
     --skill teach \
-    --skill writing-for-agents \
+    --skill to-questionnaire \
     --skill wait-what \
-    --skill edit-article \
+    --skill writing-for-agents \
     --agent claude-code \
     --agent opencode \
     --agent pi
@@ -70,13 +70,6 @@ install_skills() {
 
   skills add https://github.com/humanlayer/skills --global --yes \
     --skill show-me \
-    --agent claude-code \
-    --agent opencode \
-    --agent pi
-
-  skills add https://github.com/vercel-labs/agent-browser --global --yes \
-    --skill agent-browser \
-    --skill electron \
     --agent claude-code \
     --agent opencode \
     --agent pi
@@ -99,14 +92,9 @@ install_skills() {
     --agent opencode \
     --agent pi
 
-  skills add https://github.com/nextlevelbuilder/ui-ux-pro-max-skill --global --yes \
-    --skill ui-ux-pro-max \
-    --agent claude-code \
-    --agent opencode \
-    --agent pi
-
-  skills add https://github.com/supabase/agent-skills --global --yes \
-    --skill supabase-postgres-best-practices \
+  skills add https://github.com/vercel-labs/agent-browser --global --yes \
+    --skill agent-browser \
+    --skill electron \
     --agent claude-code \
     --agent opencode \
     --agent pi
