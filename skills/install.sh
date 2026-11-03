@@ -22,7 +22,7 @@ clean_skills() {
       info "Cleaned $dir"
     fi
   done
-  rm ~/.agents/.skill-lock.json
+  rm -f ~/.agents/.skill-lock.json
 }
 
 # Install Agent Skills
