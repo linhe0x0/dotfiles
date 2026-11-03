@@ -1,9 +1,9 @@
 # Better `ls`
-alias lsx='eza -lh --group-directories-first --icons=auto'
-alias lse='eza -lh --group-directories-first --icons=auto'
+alias lsx='eza --group-directories-first --icons=auto'
+alias lsl='eza -lh --group-directories-first --icons=auto'
 alias lsa='lsx -a'
 alias lst='eza --tree --level=2 --long --icons --git'
-alias lsta='lt -a'
+alias lsta='lst -a'
 
 # Better `tree`
 alias tree='tree --gitignore' # Ignore files matched by .gitignore
