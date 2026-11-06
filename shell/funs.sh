@@ -230,7 +230,7 @@ git_worktree_remove() {
     fi
     sel=$(fzf --tmux center --border-label=" git worktree " --style full \
       --preview="git -C {1} status -sb" \
-      --header="enter = remove, esc = cancel" <<< "$list") || return 0
+      --header="enter = remove, esc = cancel" <<<"$list") || return 0
     [[ -n "$sel" ]] || return 0
     set -- "${sel%% *}"
   fi
@@ -247,11 +247,17 @@ git_worktree_remove() {
 # diverged from the main worktree's branch, the merge is refused and nothing
 # is cleaned up; rebase the worktree branch yourself.
 git_worktree_finish() {
-  git rev-parse --git-dir >/dev/null 2>&1 || { echo "✗ Not inside a git repository" >&2; return 1; }
+  git rev-parse --git-dir >/dev/null 2>&1 || {
+    echo "✗ Not inside a git repository" >&2
+    return 1
+  }
   local main dir="$1"
   main=$(git_worktree_main) || return 1
   if [[ -n "$dir" ]]; then
-    dir=$(git -C "$dir" rev-parse --show-toplevel 2>/dev/null) || { echo "✗ Not a worktree: $1" >&2; return 1; }
+    dir=$(git -C "$dir" rev-parse --show-toplevel 2>/dev/null) || {
+      echo "✗ Not a worktree: $1" >&2
+      return 1
+    }
   else
     # Inside a linked worktree? Finish it; otherwise pick one with fzf.
     dir=$(git rev-parse --show-toplevel)
@@ -264,7 +270,7 @@ git_worktree_finish() {
       fi
       sel=$(fzf --tmux center --border-label=" git worktree " --style full \
         --preview="git -C {1} status -sb" \
-        --header="enter = finish, esc = cancel" <<< "$list") || return 0
+        --header="enter = finish, esc = cancel" <<<"$list") || return 0
       [[ -n "$sel" ]] || return 0
       dir="${sel%% *}"
     fi
@@ -305,7 +311,10 @@ git_worktree_finish() {
 # root directory (e.g. ../api-worktree/feat-login); the main worktree is
 # excluded. Worktrees outside that directory tree show absolute paths.
 git_worktree_cd() {
-  git rev-parse --git-dir >/dev/null 2>&1 || { echo "✗ Not inside a git repository" >&2; return 1; }
+  git rev-parse --git-dir >/dev/null 2>&1 || {
+    echo "✗ Not inside a git repository" >&2
+    return 1
+  }
   local main list sel dest
   main=$(git_worktree_main) || return 1
   list=$(git worktree list |
@@ -323,7 +332,7 @@ git_worktree_cd() {
     return 0
   fi
   sel=$(fzf --tmux center --border-label=" git worktree " --style full \
-    --preview="git -C {2} status -sb" <<< "$list") || return 0
+    --preview="git -C {2} status -sb" <<<"$list") || return 0
   [[ -n "$sel" ]] || return 0
   sel="${sel%%$'\n'*}" # --filter/--multi can emit several lines; keep the best-ranked one
   # Relative entries are anchored to the main repo's root, not $PWD.

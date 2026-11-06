@@ -18,7 +18,7 @@ alias view="vim -R" # open a file in read-only mode
 
 # Get ip as soon as possible.
 alias ip='curl -4 -s https://www.cloudflare.com/cdn-cgi/trace | sed -n "s/^ip=//p"' # Get the external IP address
-alias iip='get_internal_ip'                              # Get the internal IP address
+alias iip='get_internal_ip'                                                         # Get the internal IP address
 
 # Quick start or close proxy
 alias proxy='export http_proxy=http://proxy.internal:12345; export https_proxy=$http_proxy; export all_proxy=$http_proxy; export HTTP_PROXY=$http_proxy; export HTTPS_PROXY=$https_proxy;'
@@ -55,15 +55,15 @@ alias oc='opencode'
 
 # Tmux Session management
 alias t='tmux'
-alias ta='tmux attach'                                             # Attach to last session
-alias tt='tmux attach -t'                                          # Attach to specific session: tt mysession
-alias ts='tmux new-session -s'                                     # New named session: ts mysession
-alias tl='tmux list-sessions'                                      # List all sessions
-alias tk='tmux kill-session -t'                                    # Kill session: tk mysession
-alias tks='tmux kill-server'                                       # Kill tmux server entirely
-alias tr='tmux rename-session -t'                                  # Rename session
+alias ta='tmux attach'                                                                                     # Attach to last session
+alias tt='tmux attach -t'                                                                                  # Attach to specific session: tt mysession
+alias ts='tmux new-session -s'                                                                             # New named session: ts mysession
+alias tl='tmux list-sessions'                                                                              # List all sessions
+alias tk='tmux kill-session -t'                                                                            # Kill session: tk mysession
+alias tks='tmux kill-server'                                                                               # Kill tmux server entirely
+alias tr='tmux rename-session -t'                                                                          # Rename session
 alias tf='session="$(tmux list-sessions -F "#S" | fzf)" && [ -n "$session" ] && tmux attach -t "$session"' # Fuzzy find and attach to tmux session
-alias tdl='tmux_dev_layout'                                        # Dev layout in tmux (shell + lazygit + terminal)
+alias tdl='tmux_dev_layout'                                                                                # Dev layout in tmux (shell + lazygit + terminal)
 
 # LazyGit
 alias lg='lazygit'
@@ -74,10 +74,10 @@ alias dip='ssh_disconnect_port'
 alias lip='ssh_list_forwards'
 
 # Git worktree workflow (functions in funs.sh)
-alias gwf='git_worktree_cd'      # Fuzzy find a worktree and cd into it
-alias gwl='git worktree list'    # List worktrees
-alias gwa='git_worktree_add'     # Add a worktree for an existing branch: gwa <branch>
-alias gwn='git_worktree_add -b'  # New branch + worktree: gwn <branch>
-alias gwr='git_worktree_remove'  # Remove a worktree (fzf when no argument)
-alias gwd='git_worktree_finish'  # Merge into main worktree's branch, remove worktree, delete branch
-alias gwp='git worktree prune'   # Prune stale worktree metadata
+alias gwf='git_worktree_cd'     # Fuzzy find a worktree and cd into it
+alias gwl='git worktree list'   # List worktrees
+alias gwa='git_worktree_add'    # Add a worktree for an existing branch: gwa <branch>
+alias gwn='git_worktree_add -b' # New branch + worktree: gwn <branch>
+alias gwr='git_worktree_remove' # Remove a worktree (fzf when no argument)
+alias gwd='git_worktree_finish' # Merge into main worktree's branch, remove worktree, delete branch
+alias gwp='git worktree prune'  # Prune stale worktree metadata
