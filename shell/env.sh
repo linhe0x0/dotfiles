@@ -30,6 +30,6 @@ export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix --follow --exclude .g
 export DELTA_FEATURES=+side-by-side
 
 # Load private environment variables.
-if [[ -f "$HOME/.env.private" ]]; then
-  source $HOME/.env.private
+if [[ -f "$HOME/.env.private.sh" ]]; then
+  . "$HOME/.env.private.sh"
 fi

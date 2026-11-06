@@ -57,9 +57,15 @@ install_shell() {
   done
 
   # Initialize private environment variables.
-  if [[ ! -f "$HOME/.env.private" ]]; then
-    touch $HOME/.env.private
-    echo "# Private environment variables. DO NOT COMMIT THIS FILE!" >>$HOME/.env.private
+  if [[ ! -f "$HOME/.env.private.sh" ]]; then
+    touch "$HOME/.env.private.sh"
+    echo "# Private environment variables. DO NOT COMMIT THIS FILE!" >>"$HOME/.env.private.sh"
+  fi
+
+  # Initialize private aliases.
+  if [[ ! -f "$HOME/.aliases.private.sh" ]]; then
+    touch "$HOME/.aliases.private.sh"
+    echo "# Private aliases. DO NOT COMMIT THIS FILE!" >>"$HOME/.aliases.private.sh"
   fi
 
   if [[ ! -f "$SH" ]]; then

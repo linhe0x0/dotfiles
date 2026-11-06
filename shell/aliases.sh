@@ -81,3 +81,8 @@ alias gwn='git_worktree_add -b' # New branch + worktree: gwn <branch>
 alias gwr='git_worktree_remove' # Remove a worktree (fzf when no argument)
 alias gwd='git_worktree_finish' # Merge into main worktree's branch, remove worktree, delete branch
 alias gwp='git worktree prune'  # Prune stale worktree metadata
+
+# Load private aliases.
+if [[ -f "$HOME/.aliases.private.sh" ]]; then
+  . "$HOME/.aliases.private.sh"
+fi
