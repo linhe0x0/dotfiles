@@ -72,9 +72,9 @@ ssh_list_forwards() {
   pgrep -af "ssh.*-L [0-9]+:localhost:[0-9]+" || echo "No active forwards"
 }
 
-# Open a dev layout in tmux: the left pane stays as a plain shell for you to
-# start the AI agent manually, the right side splits into lazygit (top two
-# thirds) and a terminal (bottom third). Herdr is not involved. The window
+# Open a dev layout in tmux: a full-width pane spans the top quarter, below
+# it the left pane starts the `ai` command, and the right pane is a plain
+# terminal. Herdr is not involved. The window
 # is named dev-<slug>, where slug is the enclosing git repository's name
 # (the current directory when outside a repo). Inside tmux it focuses the
 # dev-<slug> window if one exists, otherwise the current window is renamed
@@ -107,12 +107,13 @@ tmux_dev_layout() {
     left=$(tmux list-panes -t dev: -F '#{pane_id}')
   fi
 
-  # Layout: the left pane is left empty (run your agent there); the right
-  # third splits into lazygit (top two thirds) and a terminal (bottom third).
-  right=$(tmux split-window -h -l 33% -t "$left" -c "$PWD" -P -F '#{pane_id}')
-  term=$(tmux split-window -v -l 33% -t "$right" -c "$PWD" -P -F '#{pane_id}')
+  # Layout: the top pane spans the full width at a quarter of the height;
+  # below it the left pane starts the `ai` command and the right pane is a
+  # plain terminal.
+  top=$(tmux split-window -v -b -l 25% -t "$left" -c "$PWD" -P -F '#{pane_id}')
+  right=$(tmux split-window -h -l 50% -t "$left" -c "$PWD" -P -F '#{pane_id}')
 
-  tmux send-keys -t "$right" 'lazygit' Enter
+  tmux send-keys -t "$left" 'ai' Enter
 
   tmux select-pane -t "$left"
   if [[ -z "$TMUX" ]]; then

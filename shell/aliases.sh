@@ -63,7 +63,7 @@ alias tk='tmux kill-session -t'                                                 
 alias tks='tmux kill-server'                                                                               # Kill tmux server entirely
 alias tr='tmux rename-session -t'                                                                          # Rename session
 alias tf='session="$(tmux list-sessions -F "#S" | fzf)" && [ -n "$session" ] && tmux attach -t "$session"' # Fuzzy find and attach to tmux session
-alias tdl='tmux_dev_layout'                                                                                # Dev layout in tmux (shell + lazygit + terminal)
+alias tdl='tmux_dev_layout'                                                                                # Dev layout in tmux (top bar + shell panes)
 
 # LazyGit
 alias lg='lazygit'
