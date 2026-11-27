@@ -2,6 +2,8 @@
 
 Tracking my own dotfiles. Those are opinionated and contains only my own personal settings.
 
+Commit messages follow [Conventional Commits](https://www.conventionalcommits.org) with the scope named after the affected top-level directory. See [docs/commit-message-guidelines.md](docs/commit-message-guidelines.md).
+
 After installing, open a new terminal window to see the effects.
 
 ## Installation
